@@ -59,19 +59,3 @@ var groupWords = (words, map) => {
   }
 };
 
-const getHash = (word) => {
-  const frequency = new Array(26).fill(0);
-
-  for (const char of word) {
-    /* Time O(K) */
-    const charCode = getCode(char); /* Time O(1) | Space (1) */
-
-    frequency[charCode]++; /*           | Space O(1) */
-  }
-
-  return buildHash(frequency);
-};
-
-const getCode = (char) => char.charCodeAt(0) - "a".charCodeAt(0);
-
-const buildHash = (frequency) => frequency.toString();
