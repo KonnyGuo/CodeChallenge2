@@ -21,17 +21,3 @@ const filterAlphaNumeric = (
   s
     .toLowerCase() /* Time O(N) | Space O(N) */
     .replace(nonAlphaNumeric, ""); /* Time O(N) | Space O(N) */
-
-const reverse = (s) =>
-  s
-    .split("") /* Time O(N) | Space O(N) */
-    .reverse() /* Time O(N) | Space O(N) */
-    .join(""); /* Time O(N) | Space O(N) */
-
-/**
- * 2 Pointer | Midde Convergence
- * Time O(N) | Space O(1)
- * https://leetcode.com/problems/valid-palindrome/
- * @param {string} s
- * @return {boolean}
- */
