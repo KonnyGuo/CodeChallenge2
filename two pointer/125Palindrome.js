@@ -13,11 +13,3 @@ var isPalindrome = function (s) {
 
   return alphaNumeric === reversed;
 };
-
-const filterAlphaNumeric = (
-  s,
-  nonAlphaNumeric = new RegExp("[^a-z0-9]", "gi")
-) =>
-  s
-    .toLowerCase() /* Time O(N) | Space O(N) */
-    .replace(nonAlphaNumeric, ""); /* Time O(N) | Space O(N) */
