@@ -7,3 +7,4 @@
 // consistency, space repetition
 // edit
 // interview prep
+// fixed schedule
