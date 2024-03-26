@@ -5,7 +5,6 @@
 // Devin???
 // research on cloud computing and work through tableau
 // consistency, space repetition
-// edit
 // interview prep
 // fixed schedule
 // prep question
