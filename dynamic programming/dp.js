@@ -8,3 +8,4 @@
 // interview prep
 // fixed schedule
 // prep question
+// work through data cleaning etc
