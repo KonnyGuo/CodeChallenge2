@@ -1,4 +1,4 @@
-// identify base case
+//  identify base case
 // draw table
 // consider edge cases?
 // consider patterns
@@ -9,3 +9,4 @@
 // fixed schedule
 // prep question
 // work through data cleaning etc
+// start applications again
