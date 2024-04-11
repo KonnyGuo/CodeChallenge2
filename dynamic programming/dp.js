@@ -1,4 +1,4 @@
-//  identify base case
+// base case
 // draw table
 // consider edge cases?
 // consider patterns
@@ -14,4 +14,4 @@
 // prepare pivot and data
 // find roles for app
 // update res base on linkedin link
-// find out why lint is causing issue
+// find out why lint is causing issue, fixed with stylelint extension error
