@@ -14,3 +14,4 @@
 // prepare pivot and data
 // find roles for app
 // update res base on linkedin link
+// find out why lint is causing issue
