@@ -17,3 +17,4 @@
 // prepare tableau dataset by next week, start experimenting with sets
 // sql review and aws start
 // badg
+// accept inv to work through next cohort
