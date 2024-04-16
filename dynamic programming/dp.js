@@ -12,8 +12,6 @@
 // data set tableau, sql
 // prepare pivot and data
 // find roles for app
-// update res base on linkedin link
-// find out why lint is causing issue, fixed with stylelint extension error
 // prepare tableau dataset by next week, start experimenting with sets
 // sql review and aws start
 // badg
