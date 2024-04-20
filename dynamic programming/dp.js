@@ -5,7 +5,6 @@
 // research on cloud computing and work through tableau
 // consistency, space repetition
 // interview prep
-// fixed schedule
 // prep question
 // work through data cleaning etc
 // start applications again
@@ -19,3 +18,4 @@
 // edit presentation
 // work through tableau data
 // cov let template create
+// continue anki
