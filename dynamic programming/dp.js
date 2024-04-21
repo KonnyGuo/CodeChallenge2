@@ -16,6 +16,6 @@
 // badg
 // accept inv to work through next cohort
 // edit presentation
-// work through tableau data
+// work through tableau data, tableau video, sql video (having, case, aggregate, etc)
 // cov let template create
 // continue anki
