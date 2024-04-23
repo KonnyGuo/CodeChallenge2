@@ -13,7 +13,7 @@
 // find roles for app
 // prepare tableau dataset by next week, start experimenting with sets
 // sql review and aws start
-// badg
+// badg upload get pt
 // accept inv to work through next cohort
 // edit presentation
 // work through tableau data, tableau video, sql video (having, case, aggregate, etc)
