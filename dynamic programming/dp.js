@@ -18,4 +18,4 @@
 // edit presentation
 // work through tableau data, tableau video, sql video (having, case, aggregate, etc)
 // cov let template create
-// anki not working, work through diff flashcard app
+// basics to advance redo
