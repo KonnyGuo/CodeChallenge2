@@ -19,3 +19,4 @@
 // work through tableau data, tableau video, sql video (having, case, aggregate, etc)
 // cov let template create
 // basics to advance redo
+// aws, docker, postman, beekeeper, dom, etc review
