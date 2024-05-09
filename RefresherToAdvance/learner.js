@@ -3,3 +3,5 @@
 // banki
 // functional + data structures
 // r
+// sql + python pandas
+// version control
