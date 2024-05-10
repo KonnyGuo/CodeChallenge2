@@ -5,3 +5,4 @@
 // r
 // sql + python pandas
 // version control
+// finish assessment
