@@ -6,3 +6,4 @@
 // sql + python pandas
 // version control
 // finish assessment / dashboards
+// work csv file, py collab
