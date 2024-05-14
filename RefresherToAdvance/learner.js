@@ -4,7 +4,7 @@
 // r
 // sql + python pandas
 // version control
-// finish assessment / dashboards
+// finish assessment (almost completed) / dashboards (5 days)
 // work csv file, py collab
 //
 //
