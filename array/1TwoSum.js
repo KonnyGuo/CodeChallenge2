@@ -84,6 +84,7 @@ var twoSum = (nums, target, map = new Map()) => {
 };
 
 //alternate solution
+// Time O(N) | Space O(N)
 var twoSum = (nums, target, map = new Map()) => {
   for (let index = 0; index < nums.length; index++) {
     const num = nums[index];
