@@ -70,31 +70,28 @@ const checkFrequency = (map) => {
 };
 
 // alternate solution
+// Time O(N) | Space O(n)
 var isAnagram = function (s, t) {
   if (s.length !== t.length) {
-    return false; // Anagrams must have the same length
+    return false;
   }
 
-  const charFrequency = new Map();
+  const myMap = new Map();
 
-  // Increment frequency for characters in string s
-  for (const char of s) {
-    charFrequency.set(char, (charFrequency.get(char) || 0) + 1);
+  for (const charOfS of s) {
+    myMap.set(charOfS, (myMap.get(charOfS) || 0) + 1);
   }
 
-  // Decrement frequency for characters in string t
-  for (const char of t) {
-    if (!charFrequency.has(char)) {
-      return false; // Character in t not present in s
+  for (const charOfT of t) {
+    if (!myMap.has(charOfT)) {
+      return false;
     }
 
-    charFrequency.set(char, charFrequency.get(char) - 1);
-
-    // Remove entry if frequency becomes zero
-    if (charFrequency.get(char) === 0) {
-      charFrequency.delete(char);
+    myMap.set(charOfT, myMap.get(charOfT) - 1);
+    if (myMap.get(charOfT) === 0) {
+      myMap.delete(charOfT);
     }
   }
 
-  return charFrequency.size === 0; // Check if all characters are balanced
+  return myMap.size === 0;
 };
