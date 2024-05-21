@@ -64,3 +64,36 @@ var topKFrequent = function (nums, k) {
 
   return ans;
 };
+
+// time O(N) | space O(N)
+var topKFrequent = function (nums, k) {
+  let frequency = {};
+
+  // Count the frequency of each element in nums
+  for (let i = 0; i < nums.length; i++) {
+    if (frequency.hasOwnProperty(nums[i])) {
+      frequency[nums[i]] += 1;
+    } else {
+      frequency[nums[i]] = 1;
+    }
+  }
+
+  // Convert the frequency object to an array of [element, frequency] pairs
+  let result = Object.keys(frequency).map((key) => [
+    Number(key),
+    frequency[key],
+  ]);
+
+  // Sort the result array in descending order of frequency
+  let sortedResult = result.sort((a, b) => {
+    return b[1] - a[1]; // Compare function to sort based on frequency
+  });
+
+  // Extract the top k elements
+  let output = [];
+  for (let i = 0; i < k; i++) {
+    output.push(sortedResult[i][0]); // Push the element, not the frequency
+  }
+
+  return output; // Return the array of top k frequent elements
+};
