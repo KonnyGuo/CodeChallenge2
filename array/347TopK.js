@@ -111,10 +111,10 @@ var topKFrequent = function (nums, k) {
   });
 
   // Group elements by their frequencies
-  for (let [key, freq] of mp) {
-    const prev = arr[freq] || []; // Get current array of elements with this frequency or empty array
+  for (let [key, value] of mp) {
+    const prev = arr[value] || []; // Get current array of elements with this frequency or empty array
     prev.push(key); // Add current element to this array
-    arr[freq] = prev; // Update the array at the index of the frequency
+    arr[value] = prev; // Update the array at the index of the frequency
   }
 
   // Reverse the array to start with the highest frequencies
