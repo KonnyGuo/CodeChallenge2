@@ -124,3 +124,18 @@ var decode = (str, output = []) => {
 
   return output;
 };
+
+// time O(N) | space O(N)
+var encode = function (strs) {
+  if (strs.length === 0) return "";
+  return strs.join("|#|") + "|#|"; // Using "|#|" as the separator
+};
+
+/**
+ * @param {string} str
+ * @returns {string[]}
+ */
+var decode = function (s) {
+  if (s === "") return [];
+  return s.slice(0, -3).split("|#|"); // Slice to remove the last '|#|' and then split
+};
