@@ -12,11 +12,11 @@ function productExceptSelf(nums) {
 
   for (let i = 0; i < nums.length; i++) {
     result[i] = prefix;
-    prefix *= nums[i];
+    prefix = prefix * nums[i];
   }
   for (let i = nums.length - 2; i >= 0; i--) {
-    postfix *= nums[i + 1];
-    result[i] *= postfix;
+    postfix = postfix * nums[i + 1];
+    result[i] = result[i] * postfix;
   }
 
   return result;

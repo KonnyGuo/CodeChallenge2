@@ -1,32 +1,21 @@
-// let nums = [
-//   ["Bob", 95],
-//   ["David", 95],
-//   ["Alice", 85],
-//   ["Charlie", 80],
-//   ["Eve", 70],
-// ];
+function productExceptSelf(nums) {
+  const result = [];
+  let prefix = 1;
+  let postfix = 1;
 
-// nums.sort((a, b) => a[0].localeCompare(b[0]));
-// console.log(nums);
+  for (let i = 0; i < nums.length; i++) {
+    result[i] = prefix;
+    prefix = prefix * nums[i];
+    console.log("Iteration", i, "prefix", result[i]);
+  }
+  for (let i = nums.length - 2; i >= 0; i--) {
+    postfix = postfix * nums[i + 1];
+    result[i] = result[i] * postfix;
+    console.log("Iteration", i, "postfix", result[i]);
+  }
 
-const person = {
-  1: "Alice",
-  2: 25,
-};
-
-list = [1, 2, 3, 4];
-
-let result = Object.keys(person).map((p) => {
-  return [Number(p), person[p]];
-});
-
-// for (let i = 0; i < result.length; i++) {
-//   console.log(result[i]);
-// }
-// console.log(...result);
-// console.log(...list);
-
-let newlist = [...list];
-for (let i = 0; i < newlist.length; i++) {
-  console.log(newlist[i]);
+  return result;
 }
+
+let nums = [1, 2, 3, 4];
+productExceptSelf(nums);
