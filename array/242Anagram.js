@@ -95,3 +95,27 @@ var isAnagram = function (s, t) {
 
   return myMap.size === 0;
 };
+
+var isAnagram = function (s, t) {
+  if (s.length !== t.length) {
+    return false;
+  }
+  let myMap = new Map();
+
+  for (const char of s) {
+    myMap.set(char, (myMap.get(char) || 0) + 1);
+  }
+
+  for (const char of t) {
+    if (!myMap.has(char)) {
+      return false;
+    }
+
+    myMap.set(char, myMap.get(char) - 1);
+    if (myMap.get(char) === 0) {
+      myMap.delete(char);
+    }
+  }
+
+  return myMap.size === 0;
+};
