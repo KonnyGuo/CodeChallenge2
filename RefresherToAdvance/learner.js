@@ -13,3 +13,4 @@
 // git version control refresher
 // vue refresher
 // utilize tableau dashboard to create more spacing
+// finsihed tableau, work through sql with postres
