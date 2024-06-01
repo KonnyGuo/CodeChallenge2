@@ -14,4 +14,4 @@
 // vue refresher + aws/cloud
 // utilize tableau dashboard to create more spacing
 // finsihed tableau, work through sql with postres
-//
+// look through anki daily
