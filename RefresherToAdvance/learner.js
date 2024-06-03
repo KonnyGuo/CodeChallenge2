@@ -10,7 +10,7 @@
 // tdesk work and cert
 // test git date
 // git date formate test complete
-// git version control refresher/practice
+// git version control refresher/practice/using branches/forking v cloning
 // vue refresher + aws/cloud
 // utilize tableau dashboard to create more spacing
 // finsihed tableau, work through sql with postres
