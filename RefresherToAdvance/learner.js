@@ -10,3 +10,4 @@
 // vue refresher + aws/cloud
 // utilize tableau dashboard to create more spacing
 // look through anki daily
+// vid, app, practice

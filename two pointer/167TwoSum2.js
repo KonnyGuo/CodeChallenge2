@@ -6,6 +6,7 @@
  * @return {number[]}
  */
 // pointer technique
+
 var twoSum = function (numbers, target) {
   let [left, right] = [0, numbers.length - 1];
 
