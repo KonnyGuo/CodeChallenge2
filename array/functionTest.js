@@ -19,6 +19,3 @@
 
 // let nums = [1, 2, 3, 4];
 // productExceptSelf(nums);
-
-// let testList = [1, 2];
-// console.log(testList[2]);
