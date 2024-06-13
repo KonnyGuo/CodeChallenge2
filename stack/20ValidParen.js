@@ -4,6 +4,7 @@
  * @param {string} s
  * @return {boolean}
  */
+// last in first out
 var isValid = (s, stack = []) => {
   for (const bracket of s.split("")) {
     /* Time O(N) */
