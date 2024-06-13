@@ -147,6 +147,7 @@ var groupAnagrams = function (strs) {
     // toString() also works
     return freq.join(",");
   };
+
   const map = new Map();
   for (const word of strs) {
     const hash = getHash(word);
