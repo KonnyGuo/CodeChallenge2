@@ -77,3 +77,37 @@ var isValidSudoku = (board) => {
 
 var getBoards = (boards, cells) =>
   new Array(boards).fill().map(() => new Array(cells).fill(0));
+
+/**
+ * Validates a Sudoku board.
+ * Time O(ROWS * COLS) | Space O(ROWS * COLS)
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+var isValidSudoku = (board) => {
+  const rows = 9;
+  const cols = 9;
+  const boxes = new Array(rows).fill().map(() => new Array(cols).fill(false));
+  const columns = new Array(rows).fill().map(() => new Array(cols).fill(false));
+  const rowSet = new Array(rows).fill().map(() => new Array(cols).fill(false));
+
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      const char = board[row][col];
+      if (char === ".") continue;
+
+      const index = Math.floor(row / 3) * 3 + Math.floor(col / 3);
+      const num = char - "1"; // Correcting the index calculation for characters '1'-'9'
+
+      if (boxes[index][num] || columns[col][num] || rowSet[row][num]) {
+        return false;
+      }
+
+      boxes[index][num] = true;
+      columns[col][num] = true;
+      rowSet[row][num] = true;
+    }
+  }
+
+  return true;
+};
