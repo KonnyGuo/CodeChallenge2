@@ -123,18 +123,18 @@ var isValidSudoku = (board) => {
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
       const char = board[row][col];
-      if (char === ".") continue;
+      if (char !== ".") {
+        const index = Math.floor(row / 3) * 3 + Math.floor(col / 3);
+        const num = char - "1"; // Correcting the index calculation for characters '1'-'9'
 
-      const index = Math.floor(row / 3) * 3 + Math.floor(col / 3);
-      const num = char - "1"; // Correcting the index calculation for characters '1'-'9'
+        if (boxes[index][num] || columns[col][num] || rowSet[row][num]) {
+          return false;
+        }
 
-      if (boxes[index][num] || columns[col][num] || rowSet[row][num]) {
-        return false;
+        boxes[index][num] = true;
+        columns[col][num] = true;
+        rowSet[row][num] = true;
       }
-
-      boxes[index][num] = true;
-      columns[col][num] = true;
-      rowSet[row][num] = true;
     }
   }
 
