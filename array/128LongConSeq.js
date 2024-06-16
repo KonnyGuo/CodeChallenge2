@@ -102,24 +102,24 @@ var longestConsecutive = (nums, maxScore = 0) => {
   return maxScore;
 };
 
-// time O(N+M) | space O(N)
-var longestConsecutive = function (nums) {
-  const numSet = new Set(nums);
-  let maxLength = 0;
+// // time O(N+M) | space O(N)
+// var longestConsecutive = function (nums) {
+//   const numSet = new Set(nums);
+//   let maxLength = 0;
 
-  for (const num of nums) {
-    if (!numSet.has(num - 1)) {
-      let currLength = 1;
-      let currNum = num + 1;
+//   for (const num of nums) {
+//     if (!numSet.has(num - 1)) {
+//       let currLength = 1;
+//       let currNum = num + 1;
 
-      while (numSet.has(currNum)) {
-        currLength++;
-        currNum++;
-      }
+//       while (numSet.has(currNum)) {
+//         currLength++;
+//         currNum++;
+//       }
 
-      maxLength = Math.max(maxLength, currLength);
-    }
-  }
+//       maxLength = Math.max(maxLength, currLength);
+//     }
+//   }
 
-  return maxLength;
-};
+//   return maxLength;
+// };
