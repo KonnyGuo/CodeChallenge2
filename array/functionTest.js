@@ -30,7 +30,8 @@ mySet.add(6);
 mySet.add(9);
 
 const iterator = mySet.values();
+console.log(iterator.next().value);
 
-for (let value of iterator) {
-  console.log(value);
-}
+// for (let value of iterator) {
+//   console.log(value);
+// }
