@@ -100,3 +100,13 @@ var isPalindrome = function (s) {
   }
   return true;
 };
+
+// time O(N) | space O(N)
+var isPalindrome = function (s) {
+  // Convert the string to lowercase and remove non-alphanumeric characters
+  const cleanedString = s.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+  // Check if the cleaned string is equal to its reverse
+  const reversedString = cleanedString.split("").reverse().join("");
+  return cleanedString === reversedString;
+};
