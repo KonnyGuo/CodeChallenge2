@@ -1,0 +1,1 @@
+// test two pointer functions
