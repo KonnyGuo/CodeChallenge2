@@ -104,6 +104,8 @@ var isPalindrome = function (s) {
 // time O(N) | space O(N)
 var isPalindrome = function (s) {
   // Convert the string to lowercase and remove non-alphanumeric characters
+  // Using .replace(/[^a-z0-9]/g, ""), we replace all non-alphanumeric characters with an empty string, effectively removing them.
+  // So, the output of "Hello123$%^World".replace(/[^a-z0-9]/g, "") would be "Hello123World", as it removes the non-alphanumeric characters.
   const cleanedString = s.toLowerCase().replace(/[^a-z0-9]/g, "");
 
   // Check if the cleaned string is equal to its reverse
