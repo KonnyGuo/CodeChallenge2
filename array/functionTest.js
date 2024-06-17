@@ -6,4 +6,4 @@ if (obj.hasOwnProperty(1)) {
   obj[1] = 1;
 }
 
-console.log(obj);
+console.log(obj.hasOwnProperty(1));
