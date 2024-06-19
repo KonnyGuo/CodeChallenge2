@@ -112,3 +112,40 @@ var isPalindrome = function (s) {
   const reversedString = cleanedString.split("").reverse().join("");
   return cleanedString === reversedString;
 };
+
+// ASCII Table Values:
+// 'a' to 'z': ASCII 97 to 122
+// 'A' to 'Z': ASCII 65 to 90
+// '0' to '9': ASCII 48 to 57
+
+/**
+ * 2 Pointer | Midde Convergence | No RegEx | No Copying
+ * Time O(N) | Space O(1)
+ * https://leetcode.com/problems/valid-palindrome/
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function (s) {
+  const isAlphaNumeric = (char) =>
+    (char.toLowerCase() >= "a" && char.toLowerCase() <= "z") ||
+    (char >= "0" && char <= "9");
+
+  let left = 0;
+  let right = s.length - 1;
+  let endsEqual = false;
+
+  while (left < right) {
+    if (!isAlphaNumeric(s.charAt(left))) {
+      left++;
+    } else if (!isAlphaNumeric(s.charAt(right))) {
+      right--;
+    } else {
+      endsEqual =
+        s.charAt(left).toLowerCase() === s.charAt(right).toLowerCase();
+      if (!endsEqual) return false;
+      left++;
+      right--;
+    }
+  }
+  return true;
+};
