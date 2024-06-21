@@ -48,6 +48,7 @@ var threeSum = function (nums) {
     if (a > 0) break;
 
     // Skip duplicates for 'a'
+    // skips first iteration when i = 0
     if (!(i > 0 && a === nums[i - 1])) {
       let l = i + 1;
       let r = nums.length - 1;
