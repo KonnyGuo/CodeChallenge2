@@ -44,29 +44,29 @@ var threeSum = function (nums) {
 
   for (let i = 0; i < nums.length; i++) {
     const a = nums[i];
+    // there are no negatives in loop
     if (a > 0) break;
 
     // Skip duplicates for 'a'
-    if (i > 0 && a === nums[i - 1]) {
-      continue;
-    }
+    if (!(i > 0 && a === nums[i - 1])) {
+      let l = i + 1;
+      let r = nums.length - 1;
 
-    let l = i + 1;
-    let r = nums.length - 1;
-    while (l < r) {
-      const threeSum = a + nums[l] + nums[r];
-      if (threeSum > 0) {
-        r--;
-      } else if (threeSum < 0) {
-        l++;
-      } else {
-        res.push([a, nums[l], nums[r]]);
-        l++;
-        r--;
-
-        // Skip duplicates for 'l'
-        while (l < r && nums[l] === nums[l - 1]) {
+      while (l < r) {
+        const threeSum = a + nums[l] + nums[r];
+        if (threeSum < 0) {
           l++;
+        } else if (threeSum > 0) {
+          r--;
+        } else {
+          res.push([a, nums[l], nums[r]]);
+          l++;
+          r--;
+
+          // Skip duplicates for 'l'
+          while (l < r && nums[l] === nums[l - 1]) {
+            l++;
+          }
         }
       }
     }
