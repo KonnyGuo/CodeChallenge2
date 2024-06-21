@@ -16,6 +16,8 @@ var threeSum = function (nums) {
     let r = nums.length - 1;
     while (l < r) {
       const threeSum = a + nums[l] + nums[r];
+      console.log("left,", l);
+      console.log("right,", r);
       if (threeSum > 0) {
         r--;
       } else if (threeSum < 0) {
@@ -38,7 +40,7 @@ var threeSum = function (nums) {
  * @param {number[]} nums
  * @return {number[][]}
  */
-var threeSum = function (nums) {
+var threeSum1 = function (nums) {
   const res = [];
   nums.sort((a, b) => a - b);
 
@@ -48,7 +50,7 @@ var threeSum = function (nums) {
     if (a > 0) break;
 
     // Skip duplicates for 'a'
-    // skips first iteration when i = 0
+    // Skips first iteration when i = 0
     if (!(i > 0 && a === nums[i - 1])) {
       let l = i + 1;
       let r = nums.length - 1;
