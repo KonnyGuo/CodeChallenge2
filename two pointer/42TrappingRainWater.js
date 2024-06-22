@@ -92,3 +92,39 @@ const getWindows = (height, left, maxLeft, right, maxRight) => {
 
   return [leftWindow, rightWindow];
 };
+
+/**
+ * https://leetcode.com/problems/trapping-rain-water/
+ * Time O(N) | Space O(1)
+ * @param {number[]} height
+ * @return {number}
+ */
+var trap = function (height) {
+  let left = 0,
+    right = height.length - 1;
+  let maxLeft = 0,
+    maxRight = 0,
+    area = 0;
+  // [0,1,0,2,1,0,1,3,2,1,2,1]
+
+  while (left < right) {
+    // if left or right height same it does not matter but we want the lower height of left and right
+    if (height[left] <= height[right]) {
+      if (height[left] >= maxLeft) {
+        maxLeft = height[left];
+      } else {
+        area += maxLeft - height[left];
+      }
+      left++;
+    } else {
+      if (height[right] >= maxRight) {
+        maxRight = height[right];
+      } else {
+        area += maxRight - height[right];
+      }
+      right--;
+    }
+  }
+
+  return area;
+};
