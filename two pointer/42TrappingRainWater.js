@@ -113,6 +113,7 @@ var trap = function (height) {
       if (height[left] >= maxLeft) {
         maxLeft = height[left];
       } else {
+        // usually means that max is greater than the current height so we get 0 or positive value after calculations
         area += maxLeft - height[left];
       }
       left++;
