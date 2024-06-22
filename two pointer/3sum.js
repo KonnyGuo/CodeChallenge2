@@ -75,6 +75,11 @@ var threeSum = function (nums) {
   return res;
 };
 
+/**
+ * Time O(N^2) | Space O(N)
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
 var threeSum = function (nums) {
   const answerArr = [];
   nums.sort((a, b) => {
@@ -99,6 +104,7 @@ var threeSum = function (nums) {
         answerArr.push([a, nums[left], nums[right]]);
         left++;
         right--;
+        // check for left duplicate
         while (left < right && nums[left] === nums[left - 1]) {
           left++;
         }
