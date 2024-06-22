@@ -16,8 +16,6 @@ var threeSum = function (nums) {
     let r = nums.length - 1;
     while (l < r) {
       const threeSum = a + nums[l] + nums[r];
-      console.log("left,", l);
-      console.log("right,", r);
       if (threeSum > 0) {
         r--;
       } else if (threeSum < 0) {
@@ -40,7 +38,7 @@ var threeSum = function (nums) {
  * @param {number[]} nums
  * @return {number[][]}
  */
-var threeSum1 = function (nums) {
+var threeSum = function (nums) {
   const res = [];
   nums.sort((a, b) => a - b);
 
@@ -75,4 +73,38 @@ var threeSum1 = function (nums) {
     }
   }
   return res;
+};
+
+var threeSum = function (nums) {
+  const answerArr = [];
+  nums.sort((a, b) => {
+    return a - b;
+  });
+
+  for (let i = 0; i < nums.length; i++) {
+    let a = nums[i];
+    if (a > 0) break;
+
+    if (i > 0 && a === nums[i - 1]) continue;
+    let left = i + 1;
+    let right = nums.length - 1;
+
+    while (left < right) {
+      const threeSum = a + nums[left] + nums[right];
+      if (threeSum < 0) {
+        left++;
+      } else if (threeSum > 0) {
+        right--;
+      } else {
+        answerArr.push([a, nums[left], nums[right]]);
+        left++;
+        right--;
+        while (left < right && nums[left] === nums[left - 1]) {
+          left++;
+        }
+      }
+    }
+  }
+
+  return answerArr;
 };
