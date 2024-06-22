@@ -12,6 +12,7 @@ var maxArea = function (height) {
     let containerHeight, area;
     let containerWidth = right - left;
 
+    // amount of water a container can hold is limited by its shorter side
     if (height[left] < height[right]) {
       containerHeight = height[left];
       left++;
