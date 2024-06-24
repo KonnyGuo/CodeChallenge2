@@ -86,18 +86,18 @@ const getCode = (char) => char.charCodeAt(0) - "A".charCodeAt(0);
  */
 var characterReplacement = function (s, k) {
   let res = 0;
-  let count = new Map();
+  let myMap = new Map();
   let left = 0;
   let maxCount = 0;
 
   for (let right = 0; right < s.length; right++) {
-    count.set(s[right], 1 + (count.get(s[right]) || 0));
-    maxCount = Math.max(maxCount, count.get(s[right]));
+    myMap.set(s[right], 1 + (myMap.get(s[right]) || 0));
+    maxCount = Math.max(maxCount, myMap.get(s[right]));
 
     // window size - maxCount should not be greater than k as we  are not trying to shrink window size
     if (right - left + 1 - maxCount > k) {
       // Remove leftmost character so it loses a count
-      count.set(s[left], count.get(s[left]) - 1);
+      myMap.set(s[left], myMap.get(s[left]) - 1);
       left++;
     }
     res = Math.max(res, right - left + 1);
