@@ -224,3 +224,68 @@ function checkInclusion(s1, s2) {
 
   return false;
 }
+
+/**
+ * Time O(N) | Space O(1)
+ * @param {string} s1
+ * @param {string} s2
+ * @return {boolean}
+ */
+function checkInclusion(s1, s2) {
+  if (s1.length > s2.length) return false;
+
+  const s1FreqMap = {};
+  const windowFreqMap = {};
+
+  // Initialize frequency maps
+  for (const char of s1) {
+    if (!(char in s1FreqMap)) {
+      // initialize both frequency maps
+      s1FreqMap[char] = 0;
+      windowFreqMap[char] = 0;
+    }
+    // add the char count to s1 map
+    s1FreqMap[char]++;
+  }
+
+  // Initialize the first window
+  for (let i = 0; i < s1.length; i++) {
+    const char = s2[i];
+    if (char in s1FreqMap) {
+      windowFreqMap[char]++;
+    }
+  }
+
+  // Count initial matches
+  let matchCount = 0;
+  const totalChars = Object.keys(s1FreqMap).length;
+  for (const char in s1FreqMap) {
+    if (s1FreqMap[char] === windowFreqMap[char]) {
+      matchCount++;
+    }
+  }
+
+  // Slide the window
+  for (let i = 0; i < s2.length - s1.length; i++) {
+    if (matchCount === totalChars) return true;
+
+    const removeChar = s2[i];
+    const addChar = s2[i + s1.length];
+
+    // Remove the first character of the window
+    if (removeChar in s1FreqMap) {
+      if (s1FreqMap[removeChar] === windowFreqMap[removeChar]) matchCount--;
+      windowFreqMap[removeChar]--;
+      if (s1FreqMap[removeChar] === windowFreqMap[removeChar]) matchCount++;
+    }
+
+    // Add the next character to the window
+    if (addChar in s1FreqMap) {
+      if (s1FreqMap[addChar] === windowFreqMap[addChar]) matchCount--;
+      windowFreqMap[addChar]++;
+      if (s1FreqMap[addChar] === windowFreqMap[addChar]) matchCount++;
+    }
+  }
+
+  return matchCount === totalChars;
+}
