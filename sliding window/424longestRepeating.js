@@ -94,7 +94,9 @@ var characterReplacement = function (s, k) {
     count.set(s[right], 1 + (count.get(s[right]) || 0));
     maxCount = Math.max(maxCount, count.get(s[right]));
 
+    // window size - maxCount should not be greater than k as we  are not trying to shrink window size
     if (right - left + 1 - maxCount > k) {
+      // Remove leftmost character so it loses a count
       count.set(s[left], count.get(s[left]) - 1);
       left++;
     }

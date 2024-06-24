@@ -85,33 +85,22 @@ var getBoards = (boards, cells) =>
  * @return {boolean}
  */
 
-// Initialization of a 9x9 2D Array Filled with false:
-// new Array(rows).fill().map(() => new Array(cols).fill(false));
-// This creates a 9-element array where each element is another 9-element array filled with false.
-
-// Step 1: Create the Outer Array
-// This creates an array with 9 undefined elements.
-// fill() method fills the array with undefined.
+// new Array(rows) creates an array with 9 empty slots:
+// [_, _, _, _, _, _, _, _, _]
+// .fill() fills these slots with undefined:
+// [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]
+// .map(() => new Array(cols).fill(false)) transforms each undefined into a new array of 9 false values:
 // [
-//   undefined, undefined, undefined, undefined, undefined,
-//   undefined, undefined, undefined, undefined
+// [false, false, false, false, false, false, false, false, false],
+// [false, false, false, false, false, false, false, false, false],
+// [false, false, false, false, false, false, false, false, false],
+// [false, false, false, false, false, false, false, false, false],
+// [false, false, false, false, false, false, false, false, false],
+// [false, false, false, false, false, false, false, false, false],
+// [false, false, false, false, false, false, false, false, false],
+// [false, false, false, false, false, false, false, false, false],
+// [false, false, false, false, false, false, false, false, false]
 // ]
-
-// Step 2: Map Each undefined to a 9-Element Array Filled with false
-// .map(() => new Array(cols).fill(false))
-// map() function replaces each undefined with a new array of 9 false elements.
-
-// [
-//   [false, false, false, false, false, false, false, false, false],
-//   [false, false, false, false, false, false, false, false, false],
-//   [false, false, false, false, false, false, false, false, false],
-//   [false, false, false, false, false, false, false, false, false],
-//   [false, false, false, false, false, false, false, false, false],
-//   [false, false, false, false, false, false, false, false, false],
-//   [false, false, false, false, false, false, false, false, false],
-//   [false, false, false, false, false, false, false, false, false],
-//   [false, false, false, false, false, false, false, false, false],
-// ];
 
 var isValidSudoku = (board) => {
   const rows = 9;
