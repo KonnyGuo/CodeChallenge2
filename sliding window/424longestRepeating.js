@@ -79,7 +79,7 @@ const getCode = (char) => char.charCodeAt(0) - "A".charCodeAt(0);
 
 /**
  * https://leetcode.com/problems/longest-repeating-character-replacement/
- * Time O(((N + 26) * N) * (M - N)) | Space O(1)
+ * Time O(N) | Space O(1)
  * @param {string} s
  * @param {number} k
  * @return {number}
