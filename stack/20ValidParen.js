@@ -61,3 +61,34 @@ var isValid = (s, stack = []) => {
 
   return stack.length === 0;
 };
+
+/**
+ * Time O(N) | Space O(N)
+ * https://leetcode.com/problems/valid-parentheses/
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = (s, stack = []) => {
+  const map = {
+    "}": "{",
+    "]": "[",
+    ")": "(",
+  };
+
+  for (const paren of s) {
+    /* Time O(N) */
+    const isBracket = paren in map;
+    if (!isBracket) {
+      stack.push(paren);
+    } else {
+      const isEqual = stack[stack.length - 1] === map[paren];
+      if (isEqual) {
+        stack.pop();
+      } else {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
+};
