@@ -1,6 +1,6 @@
 /**
  * Time O(N) | Space O(N)
- * https://leetcode.com/problems/valid-parentheses/
+ * https://leetcode.com/problems/valid-brackettheses/
  * @param {string} s
  * @return {boolean}
  */
@@ -8,8 +8,8 @@
 var isValid = (s, stack = []) => {
   for (const bracket of s.split("")) {
     /* Time O(N) */
-    const isParenthesis = bracket === "(";
-    if (isParenthesis) stack.push(")"); /* Space O(N) */
+    const isbracketthesis = bracket === "(";
+    if (isbracketthesis) stack.push(")"); /* Space O(N) */
 
     const isCurlyBrace = bracket === "{";
     if (isCurlyBrace) stack.push("}"); /* Space O(N) */
@@ -17,7 +17,7 @@ var isValid = (s, stack = []) => {
     const isSquareBracket = bracket === "[";
     if (isSquareBracket) stack.push("]"); /* Space O(N) */
 
-    const isOpenPair = isParenthesis || isCurlyBrace || isSquareBracket;
+    const isOpenPair = isbracketthesis || isCurlyBrace || isSquareBracket;
     if (isOpenPair) continue;
 
     const isEmpty = !stack.length;
@@ -31,7 +31,7 @@ var isValid = (s, stack = []) => {
 
 /**
  * Time O(N) | Space O(N)
- * https://leetcode.com/problems/valid-parentheses/
+ * https://leetcode.com/problems/valid-brackettheses/
  * @param {string} s
  * @return {boolean}
  */
@@ -64,7 +64,7 @@ var isValid = (s, stack = []) => {
 
 /**
  * Time O(N) | Space O(N)
- * https://leetcode.com/problems/valid-parentheses/
+ * https://leetcode.com/problems/valid-brackettheses/
  * @param {string} s
  * @return {boolean}
  */
@@ -75,13 +75,13 @@ var isValid = (s, stack = []) => {
     ")": "(",
   };
 
-  for (const paren of s) {
+  for (const bracket of s) {
     /* Time O(N) */
-    const isBracket = paren in map;
+    const isBracket = bracket in map;
     if (!isBracket) {
-      stack.push(paren);
+      stack.push(bracket);
     } else {
-      const isEqual = stack[stack.length - 1] === map[paren];
+      const isEqual = stack[stack.length - 1] === map[bracket];
       if (isEqual) {
         stack.pop();
       } else {
