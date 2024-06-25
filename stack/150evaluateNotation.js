@@ -74,3 +74,31 @@ var performOperation = (char, stack) => {
 
   return operation(leftNum, rightNum);
 };
+
+/**
+ * Time O(N) | Space(N)
+ * @param {string[]} tokens
+ * @return {number}
+ */
+var evalRPN = function (tokens) {
+  const stack = [];
+  const operators = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+    "*": (a, b) => a * b,
+    "/": (a, b) => Math.trunc(a / b),
+  };
+
+  for (const token of tokens) {
+    if (token in operators) {
+      const rightNum = stack.pop();
+      const leftNum = stack.pop();
+      const result = operators[token](leftNum, rightNum);
+      stack.push(result);
+    } else {
+      stack.push(Number(token));
+    }
+  }
+
+  return stack.pop();
+};
