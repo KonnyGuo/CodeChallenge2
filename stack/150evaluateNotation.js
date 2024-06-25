@@ -89,14 +89,14 @@ var evalRPN = function (tokens) {
     "/": (a, b) => Math.trunc(a / b),
   };
 
-  for (const token of tokens) {
-    if (token in operators) {
+  for (const val of tokens) {
+    if (val in operators) {
       const rightNum = stack.pop();
       const leftNum = stack.pop();
-      const result = operators[token](leftNum, rightNum);
+      const result = operators[val](leftNum, rightNum);
       stack.push(result);
     } else {
-      stack.push(Number(token));
+      stack.push(Number(val));
     }
   }
 
