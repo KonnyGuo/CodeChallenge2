@@ -70,3 +70,26 @@ const search = (temperatures, day, temperature, days, dayCount = 1) => {
 
   days[day] = dayCount; /* Ignore Space O(N) */
 };
+
+/**
+ * Time O(N) | Space O(N)
+ * @param {number[]} temperatures - Array of daily temperatures.
+ * @returns {number[]}
+ */
+const dailyTemperatures = function (temperatures) {
+  const days = Array(temperatures.length).fill(0);
+  const stack = [];
+
+  for (let day = 0; day < temperatures.length; day++) {
+    while (
+      stack.length &&
+      temperatures[stack[stack.length - 1]] < temperatures[day]
+    ) {
+      const prevColdDay = stack.pop();
+      days[prevColdDay] = day - prevColdDay;
+    }
+    stack.push(day);
+  }
+
+  return days;
+};
