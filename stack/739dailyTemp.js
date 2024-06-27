@@ -77,7 +77,7 @@ const search = (temperatures, day, temperature, days, dayCount = 1) => {
  * @returns {number[]}
  */
 const dailyTemperatures = function (temperatures) {
-  const days = Array(temperatures.length).fill(0);
+  const days = new Array(temperatures.length).fill(0);
   const stack = [];
 
   for (let day = 0; day < temperatures.length; day++) {
