@@ -97,7 +97,6 @@ var generateParenthesis = (n, combos = []) => {
   const isBaseCase = n === 0;
   if (isBaseCase) {
     combos.push("");
-
     return combos;
   }
 
@@ -110,4 +109,30 @@ var generateParenthesis = (n, combos = []) => {
   }
 
   return combos;
+};
+
+/**
+ * DFS
+ * Time O(((4^N) / (N * SQRT(N)))) | Space O(((4^N) / (N * SQRT(N))))
+ * Time O(2^N) | Space O(2^N)
+ * https://leetcode.com/problems/generate-parentheses
+ * @param {number} n
+ * @return {string[]}
+ */
+var generateParenthesis = (pairs, combinations = []) => {
+  const isBaseCase = pairs === 0;
+  if (isBaseCase) {
+    combinations.push("");
+    return combinations;
+  }
+
+  for (let openPairs = 0; openPairs < pairs; openPairs++) {
+    for (const left of generateParenthesis(openPairs)) {
+      for (const right of generateParenthesis(pairs - 1 - openPairs)) {
+        combinations.push(`(${left})${right}`);
+      }
+    }
+  }
+
+  return combinations;
 };
