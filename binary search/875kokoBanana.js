@@ -52,7 +52,7 @@ var minEatingSpeed = function (piles, h) {
       right = mid;
     }
   }
-
+  // either left or right can be returned
   return right;
 };
 
