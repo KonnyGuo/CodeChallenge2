@@ -73,3 +73,38 @@ var searchMatrix = function (matrix, target) {
 
   return false;
 };
+
+//////////////////////////////////////////////////////////////////////////////
+// Single Binary Search
+// Time: O(log(mn))  Space: O(1)
+//////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * Time O(log(ROWS * COLS)) | Space O(1)
+ * @return {boolean}
+ */
+var searchMatrix = function (matrix, target) {
+  const rows = matrix.length;
+  const cols = matrix[0].length;
+  let left = 0;
+  let right = rows * cols - 1;
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    const row = Math.floor(mid / cols);
+    const col = mid % cols;
+    const guess = matrix[row][col];
+
+    if (guess === target) {
+      return true;
+    } else if (guess < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  return false;
+};
