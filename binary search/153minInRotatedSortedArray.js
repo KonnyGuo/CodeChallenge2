@@ -23,3 +23,32 @@ var findMin = function (nums) {
 
   return nums[left];
 };
+
+/**
+ * @param {number[]} nums
+ * Time O(log(N)) | Space O(1)
+ * @return {number}
+ */
+var findMin = function (nums) {
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left < right) {
+    const mid = Math.floor((left + right) / 2);
+    const guess = nums[mid];
+    const leftNum = nums[left];
+    const rightNum = nums[right];
+
+    if (leftNum < rightNum) {
+      return leftNum;
+    }
+
+    if (leftNum <= guess) {
+      left = mid + 1;
+    } else {
+      right = mid;
+    }
+  }
+
+  return nums[left];
+};
