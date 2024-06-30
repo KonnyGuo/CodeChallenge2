@@ -73,3 +73,44 @@ const bfs = (queue, height = 0) => {
 
   return height;
 };
+
+/**
+ * https://leetcode.com/problems/maximum-depth-of-binary-tree/
+ * Time O(N) | Space O(N)
+ * @param {TreeNode} root
+ * @return {number}
+ */
+// dfs recursion
+var maxDepth = function (root) {
+  if (root === null) return 0;
+
+  const left = maxDepth(root.left);
+  const right = maxDepth(root.right);
+
+  return Math.max(left, right) + 1;
+};
+
+/**
+ * https://leetcode.com/problems/maximum-depth-of-binary-tree/
+ * Time O(N) | Space O(N)
+ * @param {TreeNode} root
+ * @return {number}
+ */
+// bfs
+var maxDepth = function (root) {
+  if (root === null) return 0;
+
+  let queue = [[root, 1]];
+  let maxDepth = 0;
+
+  while (queue.length) {
+    const [node, depth] = queue.shift();
+
+    maxDepth = Math.max(maxDepth, depth);
+
+    if (node.left) queue.push([node.left, depth + 1]);
+    if (node.right) queue.push([node.right, depth + 1]);
+  }
+
+  return maxDepth;
+};
