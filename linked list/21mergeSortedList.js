@@ -65,3 +65,36 @@ var mergeTwoLists = function (list1, list2) {
 
   return sentinel.next;
 };
+
+/**
+ * https://leetcode.com/problems/merge-two-sorted-lists/
+ * Time O(N + M) | Space O(N + M)
+ * @param {ListNode} list1
+ * @param {ListNode} list2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function (list1, list2) {
+  let sentinel = new ListNode();
+  let currentNode = sentinel;
+
+  while (list1 && list2) {
+    const isL2Greater = list1.val <= list2.val;
+    const isL2Less = list2.val < list1.val;
+
+    if (isL2Greater) {
+      currentNode.next = list1;
+      list1 = list1.next;
+    }
+
+    if (isL2Less) {
+      currentNode.next = list2;
+      list2 = list2.next;
+    }
+
+    currentNode = currentNode.next;
+  }
+
+  currentNode.next = list1 || list2;
+
+  return sentinel.next;
+};
