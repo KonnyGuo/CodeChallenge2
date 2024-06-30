@@ -1,3 +1,5 @@
+// for most node problem. Store the next node in a variable. Set the pointer of the current node to the next node. set the current node to next node
+
 // Define a node class
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val;
