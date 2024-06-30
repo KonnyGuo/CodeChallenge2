@@ -87,11 +87,12 @@ const moveNode = (curr, length) => {
 var removeNthFromEnd = function (head, n) {
   let dummy = new ListNode(0);
   dummy.next = head;
-  let first = dummy;
+  // without dummy if we move first pointer n nodes ahead, we will reach a situation where when first hits null, then second will be at the nth node from the end, if we use dummy node then second will be at the node before the nth node from the end
+  let first = head;
   let second = dummy;
 
   // Move first pointer n nodes ahead
-  for (let i = 0; i <= n; i++) {
+  for (let i = 0; i < n; i++) {
     first = first.next;
   }
 
