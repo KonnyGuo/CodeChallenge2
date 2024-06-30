@@ -76,3 +76,33 @@ const moveNode = (curr, length) => {
 
   return curr;
 };
+
+/**
+ * https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+ * Time O(N) | Space O(1)
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ */
+var removeNthFromEnd = function (head, n) {
+  let dummy = new ListNode(0);
+  dummy.next = head;
+  let first = dummy;
+  let second = dummy;
+
+  // Move first pointer n nodes ahead
+  for (let i = 0; i <= n; i++) {
+    first = first.next;
+  }
+
+  // Move both pointers until first reaches the end
+  while (first !== null) {
+    first = first.next;
+    second = second.next;
+  }
+
+  // Remove the nth node from the end
+  second.next = second.next.next;
+
+  return dummy.next;
+};
