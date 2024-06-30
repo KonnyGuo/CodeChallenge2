@@ -58,7 +58,7 @@ const bfs = (queue) => {
  * @param {TreeNode} root
  * @return {TreeNode}
  */
-// uses dfs
+// uses dfs recursion
 var invertTree = (root) => {
   if (root === null) return null;
 
@@ -77,6 +77,7 @@ var invertTree = (root) => {
  * @param {TreeNode} root
  * @return {TreeNode}
  */
+// uses bfs
 var invertTree = (root) => {
   if (root === null) return null;
 
