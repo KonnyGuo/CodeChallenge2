@@ -35,7 +35,7 @@ var invertTree = (root) => {
 
   return root;
 };
-
+// queue is a array of nodes
 const bfs = (queue) => {
   while (queue.length) {
     for (let i = queue.length - 1; 0 <= i; i--) {
