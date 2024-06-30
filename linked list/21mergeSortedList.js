@@ -73,6 +73,8 @@ var mergeTwoLists = function (list1, list2) {
  * @param {ListNode} list2
  * @return {ListNode}
  */
+
+// Avoiding Special Cases: By using a sentinel node as the initial placeholder (null node), we ensure that sentinel.next always points to the beginning of the merged list, even if no elements were merged (resulting in an empty list).
 var mergeTwoLists = function (list1, list2) {
   let sentinel = new ListNode();
   let currentNode = sentinel;
