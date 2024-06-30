@@ -29,12 +29,17 @@ const dfs = (curr) => {
 var reverseList = function (head) {
   let [prev, curr, next] = [null, head, null];
 
-  while (curr) {
+  while (curr !== null) {
     /* Time O(N) */
+
+    // store next node
     next = curr.next;
+    // reverse link
     curr.next = prev;
 
+    // move prev to current node
     prev = curr;
+    // move current to next node
     curr = next;
   }
 
