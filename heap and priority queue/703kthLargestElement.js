@@ -43,3 +43,52 @@ class KthLargest {
     return minHeap.front()?.element || 0;
   }
 }
+
+/**
+ * https://leetcode.com/problems/kth-largest-element-in-a-stream/
+ * Time O(N * (K * log(K))) | Space O(K)
+ * Your KthLargest object will be instantiated and called as such:
+ * var obj = new KthLargest(k, nums)
+ * var param_1 = obj.add(val)
+ */
+class KthLargest {
+  /**
+   * @param {number} k
+   * @param {number[]} nums
+   * @constructor
+   */
+  constructor(k, nums) {
+    this.k = k;
+    this.minHeap = new MinPriorityQueue();
+
+    nums.forEach((num) => this.add(num));
+  }
+
+  /**
+   * @param {number} val
+   * @return {number}
+   */
+  add(val) {
+    const isUnderCapacity = this.minHeap.size() < this.k;
+    if (isUnderCapacity) {
+      this.minHeap.enqueue(val);
+      return this.top();
+    }
+
+    const isLarger = this.top() < val;
+    if (isLarger) {
+      this.minHeap.dequeue();
+      this.minHeap.enqueue(val);
+    }
+
+    return this.top();
+  }
+
+  top() {
+    if (this.minHeap.front()) {
+      return this.minHeap.front().element;
+    } else {
+      return 0;
+    }
+  }
+}
