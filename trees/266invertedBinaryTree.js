@@ -70,3 +70,30 @@ var invertTree = (root) => {
 
   return root;
 };
+
+/**
+ * https://leetcode.com/problems/invert-binary-tree/
+ * TIme O(N) | Space O(W)
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = (root) => {
+  if (root === null) return null;
+
+  const queue = [root];
+
+  while (queue.length) {
+    const node = queue.shift();
+
+    // Swap left and right children
+    const temp = node.left;
+    node.left = node.right;
+    node.right = temp;
+
+    // Add children to queue
+    if (node.left) queue.push(node.left);
+    if (node.right) queue.push(node.right);
+  }
+
+  return root;
+};
