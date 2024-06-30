@@ -52,3 +52,44 @@ const reorder = (l1, l2) => {
     second = next;
   }
 };
+
+/**
+ * https://leetcode.com/problems/reorder-list/
+ * Time O(N) | Space O(1)
+ * @param {ListNode} head
+ * @return {void} Do not return anything, modify head in-place instead.
+ */
+const reorderList = function (head) {
+  // Step 1: Find the middle of the list
+  let [slow, fast] = [head, head];
+
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  const mid = slow;
+
+  // Step 2: Reverse the second half of the list starting from mid
+  let prev = null;
+  let curr = mid;
+  while (curr) {
+    const next = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = next;
+  }
+  const reversedFromMid = prev;
+
+  // Step 3: Reorder the original list and the reversed list
+  let [first, second] = [head, reversedFromMid];
+  while (second.next) {
+    const firstNext = first.next;
+    const secondNext = second.next;
+
+    first.next = second;
+    second.next = firstNext;
+
+    first = firstNext;
+    second = secondNext;
+  }
+};
