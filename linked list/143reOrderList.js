@@ -63,6 +63,7 @@ const reorderList = function (head) {
   // Step 1: Find the middle of the list
   let [slow, fast] = [head, head];
 
+  // end of this part, slow will be mid of the list
   while (fast && fast.next) {
     slow = slow.next;
     fast = fast.next.next;
@@ -70,19 +71,21 @@ const reorderList = function (head) {
   const mid = slow;
 
   // Step 2: Reverse the second half of the list starting from mid
+  // at the end of this part, prev will be tail basically (at the end)
   let prev = null;
   let curr = mid;
-  while (curr) {
+  while (curr !== null) {
     const next = curr.next;
     curr.next = prev;
     prev = curr;
     curr = next;
   }
+  // this starts from tail
   const reversedFromMid = prev;
 
   // Step 3: Reorder the original list and the reversed list
   let [first, second] = [head, reversedFromMid];
-  while (second.next) {
+  while (second.next !== null) {
     const firstNext = first.next;
     const secondNext = second.next;
 
