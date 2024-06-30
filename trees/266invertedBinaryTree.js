@@ -51,3 +51,22 @@ const bfs = (queue) => {
     }
   }
 };
+
+/**
+ * https://leetcode.com/problems/invert-binary-tree/
+ * TIme O(N) | Space O(N)
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+// uses dfs
+var invertTree = (root) => {
+  if (root === null) return null;
+
+  const left = invertTree(root.left);
+  const right = invertTree(root.right);
+
+  root.left = right;
+  root.right = left;
+
+  return root;
+};
