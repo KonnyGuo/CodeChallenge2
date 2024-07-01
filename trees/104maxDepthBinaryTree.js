@@ -96,6 +96,31 @@ var maxDepth = function (root) {
  * @param {TreeNode} root
  * @return {number}
  */
+// dfs iteration
+var maxDepth = function (root) {
+  if (root === null) return 0;
+
+  let stack = [[root, 1]];
+  let maxDepth = 0;
+
+  while (stack.length) {
+    const [node, depth] = stack.pop();
+
+    maxDepth = Math.max(maxDepth, depth);
+
+    if (node.right) stack.push([node.right, depth + 1]);
+    if (node.left) stack.push([node.left, depth + 1]);
+  }
+
+  return maxDepth;
+};
+
+/**
+ * https://leetcode.com/problems/maximum-depth-of-binary-tree/
+ * Time O(N) | Space O(N)
+ * @param {TreeNode} root
+ * @return {number}
+ */
 // bfs
 var maxDepth = function (root) {
   if (root === null) return 0;
