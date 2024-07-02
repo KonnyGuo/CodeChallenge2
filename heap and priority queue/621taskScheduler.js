@@ -153,21 +153,102 @@ var leastInterval = function (tasks, n) {
   // Return the maximum of the calculated interval and the total number of tasks
   return Math.max(tasks.length, interval);
 };
+// The formula is: ((maxFreq - 1) * (n + 1)) + mostFreq
+// We use maxFreq - 1 because:
 
-// Why we track maxFrequency and mostFrequentTask:
+// We're dealing with "complete cycles" of the most frequent task(s).
+// A "complete cycle" consists of the task itself plus the required idle time (n).
+// The last occurrence of the task doesn't need to be followed by idle time, so we don't count it as a complete cycle.
 
-// maxFrequency: This tells us how many times we need to schedule the most frequent task(s). It determines the "skeleton" of our schedule.
-// mostFrequentTask: This counts how many tasks share the maximum frequency. It's crucial for determining if we need extra slots at the end of our schedule.
+// Let's illustrate with an example:
+// Tasks: ["A","A","A","B","B"], n = 2
+// Here, A is the most frequent task with maxFreq = 3.
+// If we schedule A, we get:
+// A _ _ | A _ _ | A
+// Where:
 
-// How the interval math works:
-// The formula is: ((maxFrequency - 1) * (n + 1)) + mostFrequentTask
-// Let's break this down:
-// a) (maxFrequency - 1): This represents the number of "full" cycles we need. We subtract 1 because the last occurrence doesn't need idle time after it.
-// b) (n + 1): This is the length of each cycle. It includes the task itself (1) plus the idle time (n).
-// c) ((maxFrequency - 1) * (n + 1)): This gives us the total length of all full cycles.
-// d) + mostFrequentTask: This adds slots for the final occurrence of each of the most frequent tasks.
-// Why this works:
+// A is the task
+// _ represents a slot that can be filled with another task or left idle
+// | separates the "complete cycles"
 
-// The formula creates a "skeleton" schedule based on the most frequent task(s).
-// Other less frequent tasks can be slotted into the idle times without extending the overall length.
-// If there are multiple tasks with the max frequency, we need extra slots at the end to accommodate them all.
+// Notice:
+
+// We have 2 complete cycles (A _ _), not 3.
+// The last A doesn't need idle time after it.
+
+// So, we calculate:
+
+// Number of complete cycles: maxFreq - 1 = 3 - 1 = 2
+// Length of each cycle: n + 1 = 2 + 1 = 3
+
+// This gives us: (maxFreq - 1) * (n + 1) = 2 * 3 = 6
+// Then we add mostFreq (1 in this case) to account for the final A, giving us 7.
+// This matches our schedule: A B _ A B _ A
+// By using maxFreq - 1, we're correctly accounting for the structure of the schedule, where the last occurrence of the most frequent task doesn't need to be followed by idle time. This approach ensures we don't overestimate the required time while still maintaining the correct spacing between tasks.
+
+// The formula uses (n + 1) to represent the length of each complete cycle. Here's why:
+
+// n represents the cooldown period required between two instances of the same task.
+// We add 1 to account for the task itself.
+
+// So, n + 1 gives us the total length of a cycle, which includes:
+
+// 1 slot for the task
+// n slots for the cooldown period
+
+// Let's illustrate this with an example:
+// Suppose we have tasks = ["A","A","A","B","C"], and n = 2
+// For task A (the most frequent task), each cycle looks like this:
+// A _ _
+// Where:
+
+// A is the task itself (accounting for the 1 in n + 1)
+// _ _ are the two cooldown slots (accounting for the n in n + 1)
+
+// This cycle has a total length of 3, which is indeed n + 1 (2 + 1).
+// If we had n = 3, each cycle would look like:
+// A _ _ _
+// With a total length of 4, which is again n + 1 (3 + 1).
+// The n + 1 ensures that:
+
+// We allocate enough time for each instance of the task.
+// We maintain the required cooldown period between instances of the same task.
+// We create enough slots to potentially fit in other tasks during the cooldown period.
+
+// By using n + 1, we're correctly sizing each cycle to accommodate both the task and its required cooldown, which is essential for creating a valid schedule that meets the problem's constraints.
+
+// The main part of the formula, (maxFreq - 1) * (n + 1), calculates the time needed for all but the last occurrence of the most frequent task(s).
+// mostFreq represents the number of tasks that have the maximum frequency.
+// Adding mostFreq accounts for the final occurrences of all the most frequent tasks.
+
+// Here's why this is necessary:
+
+// If there's only one most frequent task:
+
+// We need one more slot for its final occurrence.
+
+// If there are multiple tasks with the max frequency:
+
+// We need additional slots at the end to fit all their final occurrences.
+
+// Let's look at an example:
+// Tasks: ["A","A","A","B","B","B","C","D"], n = 2
+// Here:
+
+// maxFreq = 3 (A and B both occur 3 times)
+// mostFreq = 2 (both A and B have max frequency)
+
+// Without adding mostFreq, our formula would give:
+// (3 - 1) * (2 + 1) = 2 * 3 = 6
+// This would result in a schedule like: A _ _ A _ _ A
+// But we still need to account for all the B tasks!
+// By adding mostFreq (2 in this case), we get:
+// 2 * 3 + 2 = 8
+// This gives us enough slots for a schedule like:
+// A B C A B D A B
+// Without the + mostFreq, we would underestimate the time needed in cases where multiple tasks have the maximum frequency.
+// In essence, adding mostFreq:
+
+// Ensures we have enough slots for all instances of the most frequent tasks.
+// Handles the edge case of multiple tasks having the same maximum frequency.
+// Provides the correct minimum time even when we can't fit all tasks perfectly into the idle slots of the main cycle structure.
