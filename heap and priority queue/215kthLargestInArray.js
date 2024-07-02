@@ -28,6 +28,7 @@ var findKthLargest = function (nums, k) {
   // construct a hash map of difference between nums[i] and largest
   const hash = {};
 
+  // lower diff means higher number
   for (let i = 0; i < nums.length; i++) {
     const diff = largest - nums[i];
     hash[diff] = (hash[diff] || 0) + 1;
