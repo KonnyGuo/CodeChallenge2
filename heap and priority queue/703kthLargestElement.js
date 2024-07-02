@@ -92,3 +92,62 @@ class KthLargest {
     }
   }
 }
+
+class KthLargest {
+  constructor(k, nums) {
+    this.k = k;
+    this.heap = [];
+    nums.forEach((num) => this.add(num));
+  }
+
+  add(val) {
+    if (this.heap.length < this.k) {
+      this.heap.push(val);
+      this.bubbleUp(this.heap.length - 1);
+    } else if (val > this.heap[0]) {
+      this.heap[0] = val;
+      this.bubbleDown(0);
+    }
+    return this.heap[0];
+  }
+
+  bubbleUp(index) {
+    while (index > 0) {
+      const parentIndex = Math.floor((index - 1) / 2);
+      if (this.heap[parentIndex] <= this.heap[index]) break;
+      this.swap(parentIndex, index);
+      index = parentIndex;
+    }
+  }
+
+  bubbleDown(index) {
+    const lastIndex = this.heap.length - 1;
+    while (true) {
+      let smallestIndex = index;
+      const leftIndex = 2 * index + 1;
+      const rightIndex = 2 * index + 2;
+
+      if (
+        leftIndex <= lastIndex &&
+        this.heap[leftIndex] < this.heap[smallestIndex]
+      ) {
+        smallestIndex = leftIndex;
+      }
+      if (
+        rightIndex <= lastIndex &&
+        this.heap[rightIndex] < this.heap[smallestIndex]
+      ) {
+        smallestIndex = rightIndex;
+      }
+
+      if (smallestIndex === index) break;
+
+      this.swap(index, smallestIndex);
+      index = smallestIndex;
+    }
+  }
+
+  swap(i, j) {
+    [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
+  }
+}
