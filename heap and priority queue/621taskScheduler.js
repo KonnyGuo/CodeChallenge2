@@ -119,3 +119,37 @@ const getMostFrequentTask = (
 
   return mostFrequentTask;
 };
+
+/**
+ * https://leetcode.com/problems/task-scheduler/
+ * Time O(N) | Space O(1)
+ * @param {character[]} tasks
+ * @param {number} n
+ * @return {number}
+ */
+var leastInterval = function (tasks, n) {
+  // Create and fill the frequency map
+  const frequencyMap = new Array(26).fill(0);
+  for (const task of tasks) {
+    const index = task.charCodeAt(0) - "A".charCodeAt(0);
+    frequencyMap[index]++;
+  }
+
+  // Find the maximum frequency and count of most frequent tasks
+  let maxFrequency = 0;
+  let mostFrequentTask = 0;
+  for (const frequency of frequencyMap) {
+    if (frequency > maxFrequency) {
+      maxFrequency = frequency;
+      mostFrequentTask = 1;
+    } else if (frequency === maxFrequency) {
+      mostFrequentTask++;
+    }
+  }
+
+  // Calculate the minimum interval
+  const interval = (maxFrequency - 1) * (n + 1) + mostFrequentTask;
+
+  // Return the maximum of the calculated interval and the total number of tasks
+  return Math.max(tasks.length, interval);
+};
