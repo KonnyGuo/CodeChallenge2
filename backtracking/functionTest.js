@@ -20,6 +20,8 @@
 
 // subsets([1, 2, 3]);
 
-let test = [[]];
-console.log([...test[0], 1]);
-console.log(test[0]);
+let empty = [];
+let test = [1, 2, 3];
+empty.push(test.slice());
+
+console.log(empty);
