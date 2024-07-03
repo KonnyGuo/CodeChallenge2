@@ -94,7 +94,7 @@ function minCostClimbingStairs(cost) {
   }
 
   // Return the minimum cost to reach the top (nth step)
-  return dp[n];
+  return dp[dp.length - 1];
 }
 
 /**
