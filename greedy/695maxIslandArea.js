@@ -127,3 +127,39 @@ var getNeighbors = (row, rows, col, cols) =>
     .filter(
       ([_row, _col]) => 0 <= _row && _row < rows && 0 <= _col && _col < cols
     );
+
+/**
+ * https://leetcode.com/problems/number-of-islands/
+ * Time O(ROWS * COLS) | Space O(ROWS * COLS)
+ * @param {character[][]} grid
+ * @return {number}
+ */
+function maxAreaOfIsland(grid) {
+  if (!grid || grid.length === 0) return 0;
+
+  const m = grid.length;
+  const n = grid[0].length;
+  let maxArea = 0;
+
+  function dfs(i, j) {
+    if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] === 0) {
+      return 0;
+    }
+
+    // Mark as visited by changing 1 to 0
+    grid[i][j] = 0;
+
+    // Recursively explore adjacent cells and sum their areas
+    return 1 + dfs(i - 1, j) + dfs(i + 1, j) + dfs(i, j - 1) + dfs(i, j + 1);
+  }
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (grid[i][j] === 1) {
+        maxArea = Math.max(maxArea, dfs(i, j));
+      }
+    }
+  }
+
+  return maxArea;
+}
