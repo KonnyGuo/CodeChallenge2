@@ -134,7 +134,7 @@ var getNeighbors = (row, rows, col, cols) =>
  * @param {character[][]} grid
  * @return {number}
  */
-function maxAreaOfIsland(grid) {
+var maxAreaOfIsland = function maxAreaOfIsland(grid) {
   if (!grid || grid.length === 0) return 0;
 
   const m = grid.length;
@@ -162,4 +162,4 @@ function maxAreaOfIsland(grid) {
   }
 
   return maxArea;
-}
+};
