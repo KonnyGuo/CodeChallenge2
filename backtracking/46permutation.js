@@ -80,8 +80,7 @@ var permute = function permute(nums) {
 
   function backtrack(current) {
     if (current.length === nums.length) {
-      result.push([...current]);
-      return;
+      return result.push([...current]);
     }
 
     for (let i = 0; i < nums.length; i++) {
