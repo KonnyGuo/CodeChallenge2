@@ -43,7 +43,7 @@ var findMin = function (nums) {
       return leftNum;
     }
 
-    if (leftNum <= guess) {
+    if (leftNum < guess) {
       left = mid + 1;
     } else {
       right = mid;
