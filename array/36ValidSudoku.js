@@ -129,3 +129,38 @@ var isValidSudoku = (board) => {
 
   return true;
 };
+
+/**
+ * Validates a Sudoku board.
+ * Time O(ROWS * COLS) | Space O(ROWS * COLS)
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+
+function isValidSudoku(board) {
+  const row = 9;
+  const col = 9;
+
+  let rowSet = new Array(row).fill().map(() => new Array(col).fill(false));
+  let colSet = new Array(row).fill().map(() => new Array(col).fill(false));
+  let box = new Array(row).fill().map(() => new Array(col).fill(false));
+
+  for (let r = 0; r < row; r++) {
+    for (let c = 0; c < col; c++) {
+      if (board[r][c] !== ".") {
+        let num = board[r][c] - "1";
+        let index = Math.floor(r / 3) * 3 + Math.floor(c / 3);
+
+        if (rowSet[r][num] || colSet[c][num] || box[index][num]) {
+          return false;
+        }
+
+        rowSet[r][num] = true;
+        colSet[c][num] = true;
+        box[index][num] = true;
+      }
+    }
+  }
+
+  return true;
+}
