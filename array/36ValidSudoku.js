@@ -141,9 +141,9 @@ function isValidSudoku(board) {
   const row = 9;
   const col = 9;
 
-  let rowSet = new Array(row).fill().map(() => new Array(col).fill(false));
-  let colSet = new Array(row).fill().map(() => new Array(col).fill(false));
-  let box = new Array(row).fill().map(() => new Array(col).fill(false));
+  let rowSet = new Array(row).fill(false).map(() => new Array(col).fill(false));
+  let colSet = new Array(row).fill(false).map(() => new Array(col).fill(false));
+  let box = new Array(row).fill(false).map(() => new Array(col).fill(false));
 
   for (let r = 0; r < row; r++) {
     for (let c = 0; c < col; c++) {

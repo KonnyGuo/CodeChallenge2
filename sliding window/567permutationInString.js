@@ -258,7 +258,7 @@ function checkInclusion(s1, s2) {
 
   // Count initial matches
   let matchCount = 0;
-  const totalChars = Object.keys(s1FreqMap).length;
+  const totalChars = s1.length;
   for (const char in s1FreqMap) {
     if (s1FreqMap[char] === windowFreqMap[char]) {
       matchCount++;
