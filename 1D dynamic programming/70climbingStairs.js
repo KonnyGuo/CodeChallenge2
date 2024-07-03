@@ -176,7 +176,7 @@ var climbStairs = (n, sqrt5 = Math.sqrt(5)) => {
 };
 
 /**
- * Math - Fibonacci Formula
+ * tabulation
  * Time O(N)) | Space O(1)
  * https://leetcode.com/problems/climbing-stairs/
  * @param {number} n
