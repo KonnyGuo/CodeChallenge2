@@ -69,7 +69,7 @@ function rob(nums) {
 }
 
 /**
- * tabulation
+ * Tabulation
  * Time O(N) | Space O(N)
  * https://leetcode.com/problems/house-robber-ii/
  * @param {number[]} nums
