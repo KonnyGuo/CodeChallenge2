@@ -137,3 +137,34 @@ var maxSlidingWindowWithLazyDeletionDeque = function (nums, k) {
   }
   return answer;
 };
+
+/**
+ * Time O(N) | Space O(N)
+ * @param {number[]} nums
+ * @param {number} k
+ */
+function maxSlidingWindow(nums, k) {
+  const result = [];
+  const deque = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    // Remove indices that are out of the current window
+    if (deque.length > 0 && deque[0] <= i - k) {
+      deque.shift();
+    }
+
+    // Remove smaller numbers in k range as they are useless
+    while (deque.length > 0 && nums[deque[deque.length - 1]] < nums[i]) {
+      deque.pop();
+    }
+
+    deque.push(i);
+
+    // The first element in deque is the largest in the window
+    if (i >= k - 1) {
+      result.push(nums[deque[0]]);
+    }
+  }
+
+  return result;
+}
