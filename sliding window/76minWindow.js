@@ -86,11 +86,11 @@ const getSubString = (s, start, end) =>
  */ function minWindow(s, t) {
   const need = new Map();
   const window = new Map();
-  let left = 0,
-    right = 0;
+  let left = 0;
+  let right = 0;
   let valid = 0;
-  let start = 0,
-    len = Infinity;
+  let start = 0;
+  let len = Infinity;
 
   for (let char of t) {
     if (need.has(char)) {
