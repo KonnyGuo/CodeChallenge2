@@ -83,8 +83,7 @@ const getSubString = (s, start, end) =>
  * @param {string} s
  * @param {string} t
  * @return {string}
- */
-function minWindow(s, t) {
+ */ function minWindow(s, t) {
   const need = new Map();
   const window = new Map();
   let left = 0,
@@ -93,11 +92,11 @@ function minWindow(s, t) {
   let start = 0,
     len = Infinity;
 
-  for (let c of t) {
-    if (need.has(c)) {
-      need.set(c, need.get(c) + 1);
+  for (let char of t) {
+    if (need.has(char)) {
+      need.set(char, need.get(char) + 1);
     } else {
-      need.set(c, 1);
+      need.set(char, 1);
     }
   }
 
@@ -137,6 +136,6 @@ function minWindow(s, t) {
   if (len === Infinity) {
     return "";
   } else {
-    return s.substr(start, len);
+    return s.substring(start, start + len);
   }
 }
