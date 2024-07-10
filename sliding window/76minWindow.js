@@ -136,6 +136,6 @@ const getSubString = (s, start, end) =>
   if (len === Infinity) {
     return "";
   } else {
-    return s.substring(start, start + len);
+    return s.slice(start, start + len);
   }
 }
