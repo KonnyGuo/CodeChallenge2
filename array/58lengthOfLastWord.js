@@ -32,7 +32,7 @@ var lengthOfLastWord = function (s) {
 };
 
 /**
- * time O(n) | space O(1)
+ * time O(N) | space O(1)
  * @param {string} s
  * @return {number}
  */
@@ -52,4 +52,14 @@ var lengthOfLastWord = function (s) {
   }
 
   return length;
+};
+
+/**
+ * time O(N) | space O(N)
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLastWord = function (s) {
+  let splitArr = s.trim().split(" ");
+  return splitArr[splitArr.length - 1].length;
 };
