@@ -72,3 +72,17 @@ function replaceElements(arr) {
 
   return arr;
 }
+
+/**
+ * @param {number[]} arr
+ * @return {number[]}
+ */
+var replaceElements = function (arr) {
+  let answerArr = [];
+  let currentMax = -1;
+  for (let i = arr.length - 1; i > -1; i--) {
+    answerArr[i] = currentMax;
+    currentMax = Math.max(currentMax, arr[i]);
+  }
+  return answerArr;
+};
