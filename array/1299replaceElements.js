@@ -54,3 +54,21 @@ function biggestElement(index, arr) {
 
   return biggest;
 }
+
+/**
+ * Time O(N) | Space O(1)
+ * @param {number[]} arr
+ * @return {number[]}
+ */
+function replaceElements(arr) {
+  let max = -1; // Initialize max to -1 (for the last element)
+
+  // Iterate from right to left
+  for (let i = arr.length - 1; i >= 0; i--) {
+    let current = arr[i]; // Store the current element
+    arr[i] = max; // Replace current element with max seen so far
+    max = Math.max(max, current); // Update max if current is greater
+  }
+
+  return arr;
+}
