@@ -14,3 +14,28 @@ var generate = function (numRows) {
 
   return res;
 };
+
+/**
+ * time O(#ofRow^2) | space O(#ofRow^2)
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+var generate = function (numRows) {
+  if (numRows <= 0) return [];
+
+  let triangle = [[1]];
+
+  for (let i = 1; i < numRows; i++) {
+    let prevRow = triangle[i - 1];
+    let newRow = [1]; // First element is always 1
+
+    for (let j = 1; j < i; j++) {
+      newRow.push(prevRow[j - 1] + prevRow[j]);
+    }
+
+    newRow.push(1); // Last element is always 1
+    triangle.push(newRow);
+  }
+
+  return triangle;
+};
