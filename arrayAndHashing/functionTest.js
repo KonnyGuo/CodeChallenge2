@@ -8,6 +8,7 @@
 
 // console.log(Object.entries(obj));
 
+// if str2 larger than str1 then it will be -1 aka no found
 let str1 = "flower";
 let str2 = "flow";
 console.log(str2.indexOf(str1));
