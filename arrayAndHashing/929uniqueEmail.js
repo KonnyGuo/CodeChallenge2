@@ -46,3 +46,20 @@ var numUniqueEmails = function (emails) {
 
   return uniqEmails.size;
 };
+
+/**
+ * Time O(N * K) | Space O(N)
+ * @param {string[]} emails
+ * @return {number}
+ */
+const numUniqueEmails = function (emails) {
+  const uniqueEmails = new Set();
+
+  for (let email of emails) {
+    let [local, domain] = email.split("@");
+    local = local.split("+")[0].replace(/\./g, "");
+    uniqueEmails.add(`${local}@${domain}`);
+  }
+
+  return uniqueEmails.size;
+};
