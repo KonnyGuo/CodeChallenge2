@@ -78,3 +78,26 @@ const numUniqueEmails = function (emails) {
 
   return uniqueEmails.size;
 };
+
+const numUniqueEmails = function (emails) {
+  const uniqueEmails = new Set();
+
+  for (let email of emails) {
+    let [local, domain] = email.split("@");
+
+    // Handle '+' character
+    let plusIndex = local.indexOf("+");
+    if (plusIndex !== -1) {
+      local = local.slice(0, plusIndex);
+    }
+
+    // Remove all '.' characters using your while loop approach
+    while (local.includes(".") !== false) {
+      local = local.replace(".", "");
+    }
+
+    uniqueEmails.add(`${local}@${domain}`);
+  }
+
+  return uniqueEmails.size;
+};
