@@ -61,6 +61,7 @@ var numUniqueEmails = function (emails) {
 // "test.email" becomes "testemail"
 // "a.b.c.d" becomes "abcd"
 
+// doing replace.(".", "") would not work as effectively as it does not remove all . from that string
 /**
  * Time O(N * K) | Space O(N)
  * @param {string[]} emails
