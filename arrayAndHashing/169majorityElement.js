@@ -66,6 +66,12 @@ function majorityElement(nums) {
   return candidate;
 }
 
+/**
+ * Time O(N) | Space O(1)
+ * https://leetcode.com/problems/majority-element
+ * @param {number[]} nums
+ * @return {number}
+ */
 function majorityElement(nums) {
   let candidate = 0;
   let count = 0;
