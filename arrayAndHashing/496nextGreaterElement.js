@@ -25,3 +25,22 @@ var nextGreaterElement = function (nums1, nums2) {
 
   return res;
 };
+
+function nextGreaterElement(nums1, nums2) {
+  const map = new Map();
+  const stack = [];
+
+  for (let num of nums2) {
+    while (stack.length && stack[stack.length - 1] < num) {
+      map.set(stack.pop(), num);
+    }
+    stack.push(num);
+  }
+
+  const result = new Array(nums1.length);
+  for (let i = 0; i < nums1.length; i++) {
+    result[i] = map.has(nums1[i]) ? map.get(nums1[i]) : -1;
+  }
+
+  return result;
+}
