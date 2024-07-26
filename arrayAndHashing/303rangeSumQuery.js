@@ -29,6 +29,8 @@ class NumArray {
  */
 
 /**
+ * Constructor: O(n), where n is the length of the input array.
+ * sumRange: O(1) for each query.
  * @param {number[]} nums
  */
 var NumArray = function (nums) {
