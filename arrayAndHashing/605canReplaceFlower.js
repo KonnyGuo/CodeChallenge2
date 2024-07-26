@@ -42,6 +42,7 @@ function canPlaceFlowers(flowerbed, n) {
       if (emptyLeft && emptyRight) {
         flowerbed[i] = 1;
         count++;
+        i++; // Skip the next plot as it can't be planted
       }
     }
   }
