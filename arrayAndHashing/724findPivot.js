@@ -23,7 +23,6 @@ var pivotIndex = function (nums) {
 
 /**
  * time O(n) | space O(1)
- * https://leetcode.com/problems/find-pivot-index/
  * @param {number[]} nums
  * @return {number}
  */
