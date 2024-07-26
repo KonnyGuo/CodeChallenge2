@@ -41,6 +41,7 @@ var NumArray = function (nums) {
 };
 
 /**
+ * O(n) to store the prefix sum array
  * @param {number} left
  * @param {number} right
  * @return {number}
