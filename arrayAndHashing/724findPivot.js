@@ -19,3 +19,27 @@ var pivotIndex = function (nums) {
   }
   return -1;
 };
+
+function pivotIndex(nums) {
+  let totalSum = 0;
+  let leftSum = 0;
+
+  // Calculate the total sum of the array
+  for (let num of nums) {
+    totalSum += num;
+  }
+
+  // Iterate through the array to find the pivot index
+  for (let i = 0; i < nums.length; i++) {
+    // Check if the current index is the pivot
+    if (leftSum === totalSum - leftSum - nums[i]) {
+      return i;
+    }
+
+    // Update the left sum for the next iteration
+    leftSum += nums[i];
+  }
+
+  // If no pivot index is found, return -1
+  return -1;
+}
