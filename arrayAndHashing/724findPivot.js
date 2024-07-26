@@ -20,6 +20,12 @@ var pivotIndex = function (nums) {
   return -1;
 };
 
+/**
+ * time O(n) | space O(1)
+ * https://leetcode.com/problems/find-pivot-index/
+ * @param {number[]} nums
+ * @return {number}
+ */
 function pivotIndex(nums) {
   let totalSum = 0;
   let leftSum = 0;
