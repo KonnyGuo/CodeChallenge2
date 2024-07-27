@@ -24,6 +24,12 @@ var maxNumberOfBalloons = function (text) {
   return min ? min : 0;
 };
 
+/**
+ * time O(n) space O(1)
+ * @param {string} text
+ * @return {number}
+ */
+
 function maxNumberOfBalloons(text) {
   const charCount = { b: 0, a: 0, l: 0, o: 0, n: 0 };
 
