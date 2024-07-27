@@ -17,6 +17,11 @@ var findDisappearedNumbers = function (nums) {
   return Array.from(numberSet);
 };
 
+/**
+ * time O(n) space O(1)
+ * @param {number[]} nums
+ * @return {number}
+ */
 function findDisappearedNumbers(nums) {
   const result = [];
 
