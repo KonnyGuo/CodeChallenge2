@@ -33,12 +33,27 @@ class MyHashSet {
 }
 
 /**
+ *
  * Your MyHashSet object will be instantiated and called as such:
  * var obj = new MyHashSet()
  * obj.add(key)
  * obj.remove(key)
  * var param_3 = obj.contains(key)
  */
+
+// Time Complexity:
+
+// Average case (assuming good distribution):
+// add: O(1)
+// remove: O(1)
+// contains: O(1)
+
+// Worst case (all keys hash to the same bucket):
+// add: O(n)
+// remove: O(n)
+// contains: O(n)
+
+// Space Complexity: O(n), where n is the number of unique elements stored in the HashSet.
 
 class MyHashSet {
   constructor() {
