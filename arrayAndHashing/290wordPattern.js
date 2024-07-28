@@ -27,6 +27,13 @@ var wordPattern = function (pattern, s) {
   return true;
 };
 
+/**
+ * time O(n) | space O(k)
+ * @param {string} pattern
+ * @param {string} s
+ * @return {boolean}
+ */
+
 function wordPattern(pattern, s) {
   const words = s.split(" ");
 
