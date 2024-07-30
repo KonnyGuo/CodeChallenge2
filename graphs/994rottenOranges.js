@@ -69,3 +69,63 @@ var getNeighbors = (row, rows, col, cols) =>
     .filter(
       ([_row, _col]) => 0 <= _row && _row < rows && 0 <= _col && _col < cols
     );
+
+/**
+ * https://leetcode.com/problems/rotting-oranges/
+ * Time O((ROWS * COLS)^2) | Space O(1)
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var orangesRotting = function (grid, minutes = 2) {
+  while (expireFresh(grid, minutes)) minutes++; /* Time O((ROWS * COLS)^2) */
+
+  return !hasFresh(grid) /* Time O(ROWS * COLS) */ ? minutes - 2 : -1;
+};
+
+var expireFresh = (grid, minutes, toBeContinued = false) => {
+  const [rows, cols] = [grid.length, grid[0].length];
+
+  for (let row = 0; row < rows; row++) {
+    /* Time O(ROWS) */
+    for (let col = 0; col < cols; col++) {
+      /* Time O(COLS) */
+      const isEqual = grid[row][col] === minutes;
+      if (!isEqual) continue;
+
+      for (const [_row, _col] of getNeighbors(row, rows, col, cols)) {
+        const isFresh = grid[_row][_col] === 1;
+        if (!isFresh) continue;
+
+        grid[_row][_col] = minutes + 1;
+        toBeContinued = true;
+      }
+    }
+  }
+
+  return toBeContinued;
+};
+
+var getNeighbors = (row, rows, col, cols) =>
+  [
+    [0, 1],
+    [0, -1],
+    [1, 0],
+    [-1, 0],
+  ]
+    .map(([_row, _col]) => [row + _row, col + _col])
+    .filter(
+      ([_row, _col]) => 0 <= _row && _row < rows && 0 <= _col && _col < cols
+    );
+
+const hasFresh = (grid) => {
+  for (const row of grid) {
+    /* Time O(ROWS) */
+    for (const cell of row) {
+      /* Time O(COLS) */
+      const isFresh = cell === 1;
+      if (isFresh) return true;
+    }
+  }
+
+  return false;
+};
