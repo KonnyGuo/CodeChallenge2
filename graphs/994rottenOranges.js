@@ -129,3 +129,62 @@ const hasFresh = (grid) => {
 
   return false;
 };
+
+/**
+ * https://leetcode.com/problems/rotting-oranges/
+ * Time O((rows * cols) | Space O(rows * cols)
+ * @param {number[][]} grid
+ * @return {number}
+ */
+function orangesRotting(grid) {
+  const rows = grid.length;
+  const cols = grid[0].length;
+  const queue = [];
+  let freshOranges = 0;
+  let minutes = 0;
+
+  // Initial scan of the grid
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (grid[r][c] === 2) {
+        queue.push([r, c]);
+      } else if (grid[r][c] === 1) {
+        freshOranges++;
+      }
+    }
+  }
+
+  // BFS to rot oranges
+  const directions = [
+    [1, 0],
+    [-1, 0],
+    [0, 1],
+    [0, -1],
+  ];
+  while (queue.length && freshOranges > 0) {
+    let size = queue.length;
+    for (let i = 0; i < size; i++) {
+      const [r, c] = queue.shift();
+
+      for (const [dr, dc] of directions) {
+        const newR = r + dr;
+        const newC = c + dc;
+
+        if (
+          newR >= 0 &&
+          newR < rows &&
+          newC >= 0 &&
+          newC < cols &&
+          grid[newR][newC] === 1
+        ) {
+          grid[newR][newC] = 2;
+          freshOranges--;
+          queue.push([newR, newC]);
+        }
+      }
+    }
+    minutes++;
+  }
+
+  return freshOranges === 0 ? minutes : -1;
+}
