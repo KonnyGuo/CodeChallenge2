@@ -259,3 +259,67 @@ const getIntersection = (
 
   return intersection;
 };
+
+function pacificAtlantic(heights) {
+  if (!heights || heights.length === 0 || heights[0].length === 0) {
+    return [];
+  }
+
+  const m = heights.length;
+  const n = heights[0].length;
+  const result = [];
+
+  // Helper function for DFS
+  function dfs(i, j, reachable, prevHeight) {
+    if (
+      i < 0 ||
+      i >= m ||
+      j < 0 ||
+      j >= n ||
+      reachable[i][j] ||
+      heights[i][j] < prevHeight
+    ) {
+      return;
+    }
+
+    reachable[i][j] = true;
+
+    [
+      [0, 1],
+      [1, 0],
+      [0, -1],
+      [-1, 0],
+    ].forEach(([di, dj]) => {
+      dfs(i + di, j + dj, reachable, heights[i][j]);
+    });
+  }
+
+  // Create reachable matrices
+  const pacificReachable = Array(m)
+    .fill()
+    .map(() => Array(n).fill(false));
+  const atlanticReachable = Array(m)
+    .fill()
+    .map(() => Array(n).fill(false));
+
+  // DFS from Pacific and Atlantic borders
+  for (let i = 0; i < m; i++) {
+    dfs(i, 0, pacificReachable, -Infinity);
+    dfs(i, n - 1, atlanticReachable, -Infinity);
+  }
+  for (let j = 0; j < n; j++) {
+    dfs(0, j, pacificReachable, -Infinity);
+    dfs(m - 1, j, atlanticReachable, -Infinity);
+  }
+
+  // Find cells reachable from both oceans
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (pacificReachable[i][j] && atlanticReachable[i][j]) {
+        result.push([i, j]);
+      }
+    }
+  }
+
+  return result;
+}
