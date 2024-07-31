@@ -260,6 +260,11 @@ const getIntersection = (
   return intersection;
 };
 
+/**
+ * time O(ROWS * COLS) | space O(ROWS * COLS)
+ * @param {number[][]} heights
+ * @return {number[][]}
+ */
 function pacificAtlantic(heights) {
   if (!heights || heights.length === 0 || heights[0].length === 0) {
     return [];
