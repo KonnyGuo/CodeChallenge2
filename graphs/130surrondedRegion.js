@@ -138,6 +138,12 @@ var searchGrid = (board) => {
   }
 };
 
+/**
+ * https://leetcode.com/problems/surrounded-regions/
+ * Time O(ROWS * COLS) | Space O(ROWS * COLS)
+ * @param {character[][]} board
+ * @return {void} Do not return anything, modify board in-place instead.
+ */
 function solve(board) {
   if (!board || board.length === 0) return;
 
