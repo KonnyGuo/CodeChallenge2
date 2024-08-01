@@ -202,3 +202,39 @@ var checkNeighbors = (graph, indegree, queue, order) => {
     if (isSource) queue.enqueue(neighbor);
   }
 };
+
+function canFinish(numCourses, prerequisites) {
+  // Create adjacency list and in-degree array
+  const graph = new Array(numCourses).fill(0).map(() => []);
+  const inDegree = new Array(numCourses).fill(0);
+
+  // Build the graph and in-degree array
+  for (const [course, prereq] of prerequisites) {
+    graph[prereq].push(course);
+    inDegree[course]++;
+  }
+
+  // Initialize queue with courses having no prerequisites
+  const queue = [];
+  for (let i = 0; i < numCourses; i++) {
+    if (inDegree[i] === 0) queue.push(i);
+  }
+
+  let count = 0;
+
+  // Process the queue
+  while (queue.length > 0) {
+    const current = queue.shift();
+    count++;
+
+    for (const neighbor of graph[current]) {
+      inDegree[neighbor]--;
+      if (inDegree[neighbor] === 0) {
+        queue.push(neighbor);
+      }
+    }
+  }
+
+  // If all courses are taken, return true
+  return count === numCourses;
+}
