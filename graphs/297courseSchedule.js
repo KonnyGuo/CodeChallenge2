@@ -203,6 +203,12 @@ var checkNeighbors = (graph, indegree, queue, order) => {
   }
 };
 
+/**
+ * time O(V + E) | space O(V + E)
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {boolean}
+ */
 function canFinish(numCourses, prerequisites) {
   // Create adjacency list and in-degree array
   const graph = new Array(numCourses).fill(0).map(() => []);
