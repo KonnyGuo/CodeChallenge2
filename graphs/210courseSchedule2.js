@@ -95,3 +95,64 @@ var checkNeighbors = (
  * @param {number[][]} prerequisites
  * @return {number[]}
  */
+var findOrder = function (numCourses, prerequisites) {
+  const { graph, indegree } = buildGraph(numCourses, prerequisites);
+  const reversedTopologicalOrder = topologicalSort(graph, indegree);
+  const isDirectedAcyclicGraph = reversedTopologicalOrder.length === numCourses;
+
+  return isDirectedAcyclicGraph ? reversedTopologicalOrder : [];
+};
+
+var initGraph = (numCourses) => ({
+  graph: new Array(numCourses).fill().map(() => []),
+  indegree: new Array(numCourses).fill(0),
+});
+
+var buildGraph = (numCourses, prerequisites) => {
+  const { graph, indegree } = initGraph(numCourses);
+
+  for (const [src, dst] of prerequisites) {
+    graph[src].push(dst);
+    indegree[dst]++;
+  }
+
+  return { graph, indegree };
+};
+
+var topologicalSort = (graph, indegree) => {
+  const queue = searchGraph(graph, indegree);
+
+  return bfs(graph, indegree, queue);
+};
+
+var isSource = (count) => count === 0;
+
+var searchGraph = (graph, indegree, queue = new Queue([])) => {
+  for (const node in graph) {
+    if (isSource(indegree[node])) queue.enqueue(node);
+  }
+
+  return queue;
+};
+
+var bfs = (graph, indegree, queue, reversedOrder = []) => {
+  while (!queue.isEmpty()) {
+    for (let i = queue.size() - 1; 0 <= i; i--) {
+      checkNeighbors(graph, indegree, queue, reversedOrder);
+    }
+  }
+
+  return reversedOrder.reverse();
+};
+
+var checkNeighbors = (graph, indegree, queue, reversedOrder) => {
+  const node = queue.dequeue();
+
+  reversedOrder.push(node);
+
+  for (const neighbor of graph[node]) {
+    indegree[neighbor]--;
+
+    if (isSource(indegree[neighbor])) queue.enqueue(neighbor);
+  }
+};
