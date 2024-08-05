@@ -98,3 +98,32 @@ const checkNeighbor = (graph, visited, queue) => {
     queue.enqueue(neighbor);
   }
 };
+
+var validTree = function (n, edges) {
+  const union = new Array(n).fill(-1);
+
+  for (const [src, dst] of edges) {
+    const [x, y] = [find(union, src), find(union, dst)];
+
+    const hasCycle = x === y;
+    if (hasCycle) return false;
+
+    compress(union, x, y);
+  }
+
+  const isValid = edges.length === n - 1;
+  return isValid;
+};
+
+const compress = (union, i, head) => (union[i] = head);
+
+const find = (union, i, num = union[i]) => {
+  const isEmpty = num === -1;
+  if (isEmpty) return i;
+
+  const head = find(union, num);
+
+  compress(union, i, head);
+
+  return union[i];
+};
