@@ -99,6 +99,13 @@ const checkNeighbor = (graph, visited, queue) => {
   }
 };
 
+/**
+ * https://leetcode.com/problems/graph-valid-tree/
+ * Time O(E * a(N)) | Space O(V)
+ * @param {number} n
+ * @param {number[][]} edges
+ * @return {boolean}
+ */
 var validTree = function (n, edges) {
   const union = new Array(n).fill(-1);
 
