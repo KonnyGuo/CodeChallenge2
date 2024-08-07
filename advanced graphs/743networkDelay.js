@@ -44,3 +44,22 @@ var bfs = (queue, graph, maxTime) => {
     }
   }
 };
+
+var checkNeighbors = (queue, graph, maxTime) => {
+  const [node, time] = queue.dequeue();
+
+  const canUpdate = time < maxTime[node];
+  if (!canUpdate) return;
+
+  maxTime[node] = time;
+
+  for (const [dst, weight] of graph[node]) {
+    queue.enqueue([dst, weight + time]);
+  }
+};
+
+var checkAns = (maxTime) => {
+  const max = Math.max(...maxTime);
+
+  return max < Infinity ? max : -1;
+};
