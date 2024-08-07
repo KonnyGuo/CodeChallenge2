@@ -63,3 +63,11 @@ var checkAns = (maxTime) => {
 
   return max < Infinity ? max : -1;
 };
+
+/**
+ * https://leetcode.com/problems/network-delay-time/
+ * @param {number[][]} times
+ * @param {number} n
+ * @param {number} k
+ * @return {number}
+ */
