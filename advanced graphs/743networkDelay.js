@@ -71,3 +71,55 @@ var checkAns = (maxTime) => {
  * @param {number} k
  * @return {number}
  */
+
+var networkDelayTime = (times, n, k) => {
+  const { graph, seen, minHeap } = buildGraph(times, n, k);
+  const maxTime = getTime(graph, seen, minHeap);
+
+  return seen.size === n ? maxTime : -1;
+};
+
+var initGraph = (n, k) => ({
+  graph: Array.from({ length: n + 1 })
+    .fill()
+    .map(() => []),
+  seen: new Set(),
+  minHeap: new MinPriorityQueue(),
+});
+
+var buildGraph = (times, n, k) => {
+  const { graph, seen, minHeap } = initGraph(n, k);
+
+  for (const [src, dst, weight] of times) {
+    graph[src].push([dst, weight]);
+  }
+
+  minHeap.enqueue([k, 0], 0);
+
+  return { graph, seen, minHeap };
+};
+
+const getTime = (graph, seen, minHeap, maxTime = 0) => {
+  while (!minHeap.isEmpty()) {
+    const [node, cost] = minHeap.dequeue().element;
+
+    if (seen.has(node)) continue;
+    seen.add(node);
+
+    maxTime = Math.max(maxTime, cost);
+    checkNeighbors(graph, node, cost, seen, minHeap);
+  }
+
+  return maxTime;
+};
+
+var checkNeighbors = (graph, src, srcCost, seen, minHeap) => {
+  for (const [dst, dstCost] of graph[src]) {
+    if (seen.has(dst)) continue;
+
+    const cost = dstCost + srcCost;
+    const node = [dst, cost];
+
+    minHeap.enqueue(node, cost);
+  }
+};
