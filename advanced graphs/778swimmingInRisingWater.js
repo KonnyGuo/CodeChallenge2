@@ -32,3 +32,23 @@ var getTime = (grid, seen, minHeap, maxTime = 0) => {
     checkNeighbors(grid, row, rows, col, cols, seen, minHeap);
   }
 };
+
+var checkNeighbors = (grid, row, rows, col, cols, seen, minHeap) => {
+  for (const [_row, _col] of getNeighbors(row, rows, col, cols)) {
+    if (seen.has(grid[_row][_col])) continue;
+
+    minHeap.enqueue([_row, _col], grid[_row][_col]);
+  }
+};
+
+const getNeighbors = (row, rows, col, cols) =>
+  [
+    [1, 0],
+    [-1, 0],
+    [0, 1],
+    [0, -1],
+  ]
+    .map(([_row, _col]) => [row + _row, col + _col])
+    .filter(
+      ([_row, _col]) => 0 <= _row && _row <= rows && 0 <= _col && _col <= cols
+    );
