@@ -131,3 +131,48 @@ var buildGraph = (words) => {
 
   return { graph, seen, buffer };
 };
+
+var canBuildGraph = (words, graph) => {
+  for (let index = 0; index < words.length - 1; index++) {
+    const [word1, word2] = [words[index], words[index + 1]];
+    const minLength = Math.min(word1.length, word2.length);
+
+    const isWord1Longer = word2.length < word1.length;
+    const isPrefix = isWord1Longer && word1.startsWith(word2);
+
+    if (isPrefix) return false;
+
+    for (let j = 0; j < minLength; j++) {
+      const [char1, char2] = [word1[j], word2[j]];
+
+      const isEqual = char1 === char2;
+      if (isEqual) continue;
+
+      graph.get(char1).push(char2);
+
+      break;
+    }
+  }
+
+  return true;
+};
+
+const dfs = (char, graph, seen, buffer) => {
+  if (seen.has(char)) return seen.get(char);
+
+  if (!backTrack(char, graph, seen, buffer)) return false;
+
+  buffer.push(char);
+
+  return true;
+};
+
+const backTrack = (char, graph, seen, buffer) => {
+  seen.set(char, false);
+  for (const neighbor of graph.get(char)) {
+    if (!dfs(neighbor, graph, seen, buffer)) return false;
+  }
+  seen.set(char, true);
+
+  return true;
+};
