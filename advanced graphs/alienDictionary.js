@@ -60,3 +60,37 @@ var canBuildGraph = (words, graph, frequencyMap) => {
 
   return true;
 };
+
+const bfs = (queue, frequencyMap, graph, buffer) => {
+  while (!queue.isEmpty()) {
+    for (let level = queue.size() - 1; 0 <= level; level--) {
+      checkNeighbors(queue, frequencyMap, graph, buffer);
+    }
+  }
+};
+
+var checkNeighbors = (queue, frequencyMap, graph, buffer) => {
+  const char = queue.dequeue();
+
+  buffer.push(char);
+
+  for (const next of graph.get(char)) {
+    const value = frequencyMap.get(next) - 1;
+
+    frequencyMap.set(next, value);
+
+    const isEmpty = frequencyMap.get(next) === 0;
+    if (!isEmpty) continue;
+
+    queue.enqueue(next);
+  }
+};
+
+const queueSources = (queue, frequencyMap) => {
+  for (const [key, value] of frequencyMap) {
+    const isEmpty = frequencyMap.get(key) === 0;
+    if (!isEmpty) continue;
+
+    queue.enqueue(key);
+  }
+};
