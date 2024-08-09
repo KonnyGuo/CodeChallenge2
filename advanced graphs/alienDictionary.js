@@ -101,3 +101,33 @@ const queueSources = (queue, frequencyMap) => {
  * @param {string[]} words
  * @return {string}
  */
+
+var alienOrder = function (words) {
+  const { graph, seen, buffer } = buildGraph(words);
+
+  if (!canBuildGraph(words, graph)) return "";
+
+  for (const [char] of graph) {
+    if (!dfs(char, graph, seen, buffer)) return "";
+  }
+
+  return buffer.reverse().join("");
+};
+
+var initGraph = () => ({
+  graph: new Map(),
+  seen: new Map(),
+  buffer: [],
+});
+
+var buildGraph = (words) => {
+  const { graph, seen, buffer } = initGraph();
+
+  for (const word of words) {
+    for (const char of word) {
+      graph.set(char, []);
+    }
+  }
+
+  return { graph, seen, buffer };
+};
