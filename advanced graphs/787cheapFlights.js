@@ -51,3 +51,15 @@ const search = (graph, src, dst, seen, minHeap) => {
 
   return -1;
 };
+
+var checkNeighbors = (graph, cost, city, stops, seen, minHeap) => {
+  for (let [nextCity, nextCost] of graph[city]) {
+    const hasSeen = seen.has(nextCity) && stops - 1 <= seen.get(nextCity);
+    if (hasSeen) continue;
+
+    const priority = cost + nextCost;
+    const node = [priority, nextCity, stops - 1];
+
+    minHeap.enqueue(node, priority);
+  }
+};
