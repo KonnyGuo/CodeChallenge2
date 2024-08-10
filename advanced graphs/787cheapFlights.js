@@ -63,3 +63,24 @@ var checkNeighbors = (graph, cost, city, stops, seen, minHeap) => {
     minHeap.enqueue(node, priority);
   }
 };
+
+function findCheapestPrice(n, flights, src, dst, k) {
+  // Initialize distances array
+  const distances = new Array(n).fill(Infinity);
+  distances[src] = 0;
+
+  // Main algorithm
+  for (let i = 0; i <= k; i++) {
+    const temp = [...distances];
+
+    for (const [from, to, price] of flights) {
+      if (distances[from] === Infinity) continue;
+
+      temp[to] = Math.min(temp[to], distances[from] + price);
+    }
+
+    distances.splice(0, distances.length, ...temp);
+  }
+
+  return distances[dst] === Infinity ? -1 : distances[dst];
+}
