@@ -44,3 +44,35 @@ const buildGraph = (tickets, graph = new Map()) => {
 
   return graph;
 };
+
+function findItinerary(tickets) {
+  // Create the adjacency list
+  function createGraph(tickets) {
+    const graph = {};
+    for (const [from, to] of tickets) {
+      if (!graph[from]) graph[from] = [];
+      graph[from].push(to);
+    }
+    // Sort destinations in reverse lexical order
+    for (const from in graph) {
+      graph[from].sort((a, b) => b.localeCompare(a));
+    }
+    return graph;
+  }
+
+  // DFS function
+  function dfs(airport, graph, itinerary) {
+    const destinations = graph[airport] || [];
+    while (destinations.length) {
+      const nextAirport = destinations.pop();
+      dfs(nextAirport, graph, itinerary);
+    }
+    itinerary.push(airport);
+  }
+
+  // Main function logic
+  const graph = createGraph(tickets);
+  const itinerary = [];
+  dfs("JFK", graph, itinerary);
+  return itinerary.reverse();
+}
