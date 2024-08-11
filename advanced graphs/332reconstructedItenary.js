@@ -33,3 +33,14 @@ const dfs = (tickets, graph, city = "JFK", path = ["JFK"]) => {
 
   return false;
 };
+
+const buildGraph = (tickets, graph = new Map()) => {
+  for (const [src, dst] of tickets) {
+    const edges = graph.get(src) || [];
+
+    edges.push(dst);
+    graph.set(src, edges);
+  }
+
+  return graph;
+};
