@@ -45,6 +45,13 @@ const buildGraph = (tickets, graph = new Map()) => {
   return graph;
 };
 
+/**
+ * time O(ELogE) | space O(V + E)
+ * https://leetcode.com/problems/reconstruct-itinerary/
+ * @param {string[][]} tickets
+ * @return {string[]}
+ */
+
 function findItinerary(tickets) {
   // Create the adjacency list
   function createGraph(tickets) {
