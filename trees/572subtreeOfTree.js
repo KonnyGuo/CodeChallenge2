@@ -92,3 +92,41 @@ var isSubtree = function (root, subRoot, hash = new Map(), postOrderKey = [0]) {
 
   return hash.has(hashKey);
 };
+
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} subRoot
+ * @return {boolean}
+ */
+var isSubtree = function (root, subRoot) {
+  // If subRoot is null, it's always a subtree
+  if (subRoot === null) return true;
+  // If root is null but subRoot is not, it can't be a subtree
+  if (root === null) return false;
+
+  // Check if the current root is same as subRoot
+  if (isSameTree(root, subRoot)) return true;
+
+  // Recursively check left and right subtrees
+  return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+};
+
+/**
+ * Helper function to check if two trees are identical
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {boolean}
+ */
+function isSameTree(p, q) {
+  // If both nodes are null, trees are same
+  if (p === null && q === null) return true;
+  // If one is null and other is not, trees are different
+  if (p === null || q === null) return false;
+
+  // Check if current node values are same and recursively check left and right subtrees
+  return (
+    p.val === q.val &&
+    isSameTree(p.left, q.left) &&
+    isSameTree(p.right, q.right)
+  );
+}
