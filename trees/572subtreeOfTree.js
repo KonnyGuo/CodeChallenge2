@@ -80,3 +80,15 @@ const hashify = (root, hash, postOrderKey) => {
 
   return hash.get(key);
 };
+
+var isSubtree = function (root, subRoot, hash = new Map(), postOrderKey = [0]) {
+  hashify(root, hash, postOrderKey);
+
+  const hashKey = [
+    hashify(subRoot.left, hash, postOrderKey),
+    subRoot.val,
+    hashify(subRoot.right, hash, postOrderKey),
+  ].join("");
+
+  return hash.has(hashKey);
+};
