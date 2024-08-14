@@ -15,3 +15,12 @@ var lowestCommonAncestor = function (root, p, q) {
 
   return root;
 };
+
+/**
+ * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+ * Time O(N) | Space O(1)
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
