@@ -6,3 +6,12 @@
  * @param {TreeNode} q
  * @return {TreeNode}
  */
+var lowestCommonAncestor = function (root, p, q) {
+  const isGreater = p.val < root.val && q.val < root.val;
+  if (isGreater) return lowestCommonAncestor(root.left, p, q);
+
+  const isLess = root.val < p.val && root.val < q.val;
+  if (isLess) return lowestCommonAncestor(root.right, p, q);
+
+  return root;
+};
