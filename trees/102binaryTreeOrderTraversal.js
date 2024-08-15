@@ -5,3 +5,10 @@
  * @param {TreeNode} root
  * @return {number[][]}
  */
+
+var levelOrder = function (root) {
+  const isBaseCase = root === null;
+  if (isBaseCase) return [];
+
+  return bfs([root]);
+};
