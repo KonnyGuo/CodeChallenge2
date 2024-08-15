@@ -39,3 +39,15 @@ const bfs = (queue /* Space O(W) */, levels = []) => {
  * @param {TreeNode} root
  * @return {number[]}
  */
+
+var levelOrder = function (root, level = 0, levels = []) {
+  const isBaseCase = root === null;
+  if (isBaseCase) return levels;
+
+  const isLastNode = level === levels.length;
+  if (isLastNode) levels.push([]);
+
+  levels[level].push(root.val);
+
+  return dfs(root, level, levels); // Time O(N) | Space O(H)
+};
