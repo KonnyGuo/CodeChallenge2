@@ -51,3 +51,10 @@ var levelOrder = function (root, level = 0, levels = []) {
 
   return dfs(root, level, levels); // Time O(N) | Space O(H)
 };
+
+const dfs = (root, level, levels) => {
+  if (root.left) levelOrder(root.left, level + 1, levels);
+  if (root.right) levelOrder(root.right, level + 1, levels);
+
+  return levels;
+};
