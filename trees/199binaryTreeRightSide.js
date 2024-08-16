@@ -29,3 +29,10 @@ const bfs = (queue, rightSide = []) => {
 
   return rightSide;
 };
+
+/**
+ * https://leetcode.com/problems/binary-tree-right-side-view/
+ * Time O(N) | Space O(H)
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
