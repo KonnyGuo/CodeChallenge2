@@ -36,3 +36,13 @@ const bfs = (queue, rightSide = []) => {
  * @param {TreeNode} root
  * @return {number[]}
  */
+
+var rightSideView = function (root, level = 0, rightSide = []) {
+  const isBaseCase = root === null;
+  if (isBaseCase) return rightSide;
+
+  const isLastNode = level === rightSide.length;
+  if (isLastNode) rightSide.push(root.val);
+
+  return dfs(root, level, rightSide);
+};
