@@ -46,3 +46,10 @@ var rightSideView = function (root, level = 0, rightSide = []) {
 
   return dfs(root, level, rightSide);
 };
+
+const dfs = (root, level, rightSide) => {
+  if (root.right) rightSideView(root.right, level + 1, rightSide);
+  if (root.left) rightSideView(root.left, level + 1, rightSide);
+
+  return rightSide;
+};
