@@ -34,3 +34,10 @@ const dfs = (root, max, total) => {
  * @param {TreeNode} root
  * @return {number}
  */
+
+var goodNodes = function (root) {
+  const isBaseCase = root === null;
+  if (isBaseCase) return 0;
+
+  return bfs([[root, -Infinity]]);
+};
