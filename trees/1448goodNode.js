@@ -27,3 +27,10 @@ const dfs = (root, max, total) => {
   count(root.left, max, total);
   count(root.right, max, total);
 };
+
+/**
+ * https://leetcode.com/problems/count-good-nodes-in-binary-tree/
+ * Time O(N) | Space O(W)
+ * @param {TreeNode} root
+ * @return {number}
+ */
