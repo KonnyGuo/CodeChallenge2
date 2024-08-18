@@ -43,3 +43,10 @@ var isValidBST = function (root, prev = [null]) {
 
   return isValidBST(root.right, prev);
 };
+
+/**
+ * https://leetcode.com/problems/validate-binary-search-tree/
+ * Time O(N) | Space O(H)
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
