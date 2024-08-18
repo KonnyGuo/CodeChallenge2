@@ -29,3 +29,17 @@ const dfs = (root, min, max) => {
  * @param {TreeNode} root
  * @return {boolean}
  */
+
+var isValidBST = function (root, prev = [null]) {
+  const isBaseCase = root === null;
+  if (isBaseCase) return true;
+
+  if (!isValidBST(root.left, prev)) return false;
+
+  const isInvalid = prev[0] !== null && root.val <= prev[0];
+  if (isInvalid) return false;
+
+  prev[0] = root.val;
+
+  return isValidBST(root.right, prev);
+};
