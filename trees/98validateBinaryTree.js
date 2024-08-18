@@ -21,3 +21,11 @@ const dfs = (root, min, max) => {
 
   return left && right;
 };
+
+// TODO
+/**
+ * https://leetcode.com/problems/validate-binary-search-tree/
+ * Time O(N) | Space O(H)
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
