@@ -50,3 +50,26 @@ var isValidBST = function (root, prev = [null]) {
  * @param {TreeNode} root
  * @return {boolean}
  */
+var isValidBST = function (root, stack = []) {
+  let prev = null;
+
+  while (stack.length || root) {
+    moveLeft(stack, root);
+    root = stack.pop();
+
+    const isInvalid = prev && root.val <= prev.val;
+    if (isInvalid) return false;
+
+    prev = root;
+    root = root.right;
+  }
+
+  return true;
+};
+
+const moveLeft = (stack, root) => {
+  while (root) {
+    stack.push(root);
+    root = root.left;
+  }
+};
