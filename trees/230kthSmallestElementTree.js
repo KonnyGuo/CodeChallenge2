@@ -5,3 +5,9 @@
  * @param {number} k
  * @return {number}
  */
+
+var kthSmallest = function (root, k, inOrder = []) {
+  if (!root) return inOrder;
+
+  return dfs(root, k, inOrder);
+};
