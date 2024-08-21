@@ -32,10 +32,3 @@ const bfs = (queue /* Space O(W) */, levels = []) => {
 
   return levels;
 };
-
-/**
- * https://leetcode.com/problems/binary-tree-level-order-traversal/
- * Time O(N) | Space O(H)
- * @param {TreeNode} root
- * @return {number[]}
- */
