@@ -1,4 +1,4 @@
 // --date="2024-09-10 12:00:00"
 use git commands to test this
 //lastf1 back
-//understanding the trade
+//understanding the trades
