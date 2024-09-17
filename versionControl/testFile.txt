@@ -2,3 +2,4 @@
 use git commands to test this
 //lastf1 back
 //understanding the trades
+sql d1
